@@ -1,2 +1,8 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<script lang="ts">
+	import { config } from '$lib/config';
+</script>
+
+<h1 class="text-7xl font-bold">{config.branding.name}</h1>
+<h3 class="text-3xl">{config.branding.description}</h3>
+<br />
+<button class="{config.styling.buttonStyle}">Button</button>
