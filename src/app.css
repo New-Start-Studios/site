@@ -1,3 +1,12 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+	.btn-rounded {
+		@apply rounded-lg bg-secondary px-4 py-2 text-onSecondary transition-transform ease-in-out hover:scale-110
+	}
+    .btn-boxy {
+        @apply bg-secondary px-4 py-2 text-onSecondary transition-transform ease-in-out hover:scale-110
+    }
+}

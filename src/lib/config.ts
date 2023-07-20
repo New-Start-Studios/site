@@ -3,15 +3,23 @@ export const config = {
 		name: 'Example Site',
 		description: 'This is an example site, this is actually editable in the config file.'
 	},
+    // Options: "nav", "hero", "main", "footer"
+    // Order: top to bottom
+    homeLayoutOrder: ['nav', 'hero', 'main', 'footer'],
 	styling: {
-		buttonStyle: `rounded-lg bg-secondary px-4 py-2 text-white transition-transform ease-in-out hover:scale-110`
+        // Options: "boxy", "rounded"
+		buttonStyleType: "rounded",
 	},
 	fonts: {
-		headingFont: 'Roboto',
-		bodyFont: 'Arial, sans-serif'
+		headingFont: ['Verdana', 'sans-serif'],
+		bodyFont: ['Roboto', 'sans-serif']
 	},
 	colors: {
-		primaryColor: '#FF5733',
-		secondaryColor: '#1ABC9C'
+        // Background color
+		primaryColor: 'blue',
+        // Content on top of primary color
+		secondaryColor: 'white',
+        // Content on top of secondary color
+        onSecondary: 'black',
 	}
 } as const;

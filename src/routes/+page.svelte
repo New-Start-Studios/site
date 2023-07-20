@@ -1,8 +1,25 @@
 <script lang="ts">
 	import { config } from '$lib/config';
+
+    import Hero from '$lib/components/Hero.svelte';
+    import Main from '$lib/components/Main.svelte';
+	import Footer from '$lib/components/Footer.svelte';
+	import Nav from '$lib/components/Nav.svelte';
 </script>
 
-<h1 class="text-7xl font-bold">{config.branding.name}</h1>
-<h3 class="text-3xl">{config.branding.description}</h3>
-<br />
-<button class="{config.styling.buttonStyle}">Button</button>
+<!-- Sort the elements based on their order in config.layoutOrder -->
+
+{#each config.homeLayoutOrder as layout}
+    {#if layout === 'nav'}
+        <Nav />
+    {/if}
+    {#if layout === 'hero'}
+        <Hero />
+    {/if}
+    {#if layout === 'main'}
+        <Main />
+    {/if}
+    {#if layout === 'footer'}
+        <Footer />
+    {/if}
+{/each}
