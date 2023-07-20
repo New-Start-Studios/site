@@ -13,7 +13,9 @@ export const config = {
     homeLayoutOrder: ['nav', 'hero', 'main', 'footer'],
 	styling: {
         // Options: "boxy", "rounded"
-		buttonStyleType: "rounded",
+		buttonStyleType: "boxy",
+		// Options: "boxy", "rounded"
+		contentBoxStyleType: "boxy",
 	},
 	fonts: {
 		headingFont: ['Verdana', 'sans-serif'],
@@ -21,7 +23,7 @@ export const config = {
 	},
 	colors: {
         // Background color
-		primaryColor: 'blue',
+		primaryColor: 'green',
         // Content on top of primary color
 		secondaryColor: 'white',
         // Content on top of secondary color

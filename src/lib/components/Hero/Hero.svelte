@@ -8,5 +8,5 @@
 	<br />
 	<!-- config.styling.buttonStyleType can be rounded or boxy -->
 	<!-- class names btn-boxy or btn-rounded -->
-	<button class="btn-{config.styling.buttonStyleType} mx-4">Button</button>
+	<button class="btn-rounded btn-boxy btn-{config.styling.buttonStyleType} mx-4">Button</button>
 </div>
