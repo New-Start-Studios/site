@@ -1,3 +1,8 @@
+// TODO: 
+// - Add more options for styling
+// - Add more options for fonts and maybe import google fonts
+// - Colors are awkwardly named
+
 export const config = {
 	branding: {
 		name: 'Example Site',

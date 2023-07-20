@@ -1,5 +1,7 @@
 import { config } from './src/lib/config.ts';
 
+// This customizes TailwindCSS based on the values in src/lib/config.ts
+
 /** @type {import('tailwindcss').Config} */
 export default {
 	content: ['./src/**/*.{html,js,svelte,ts}'],

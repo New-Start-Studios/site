@@ -8,7 +8,6 @@
 </script>
 
 <!-- Sort the elements based on their order in config.layoutOrder -->
-
 {#each config.homeLayoutOrder as layout}
     {#if layout === 'nav'}
         <Nav />
