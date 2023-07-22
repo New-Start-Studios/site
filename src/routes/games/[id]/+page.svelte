@@ -40,6 +40,9 @@
 	}
 
 	function encodeURL(url: string): string {
+		if (!browser) {
+			return url;
+		} 
 		// check if the service worker is installed
 		navigator.serviceWorker.getRegistrations().then((registrations) => {
 			if (registrations.length === 0) {
@@ -130,6 +133,7 @@
 	}
 
 	import Icon from '@iconify/svelte';
+	import { browser } from '$app/environment';
 
 	let innerWidth: number = 0;
 
