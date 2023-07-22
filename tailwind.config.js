@@ -9,14 +9,10 @@ export default {
 		fontFamily: {
 			main: config.fonts.bodyFont,
 			heading: config.fonts.headingFont
-		},
-		extend: {
-			colors: {
-				primary: config.colors.primaryColor,
-				secondary: config.colors.secondaryColor,
-				onSecondary: config.colors.onSecondary,
-			}
 		}
 	},
-	plugins: []
+	plugins: [require('daisyui')],
+	daisyui: {
+		themes: ['light', 'dark', 'black', 'night', 'luxury']
+	}
 };

@@ -4,10 +4,10 @@
 
 @layer components {
 	.btn-rounded {
-		@apply rounded-lg bg-secondary px-4 py-2 text-onSecondary transition-transform ease-in-out hover:scale-110
+		@apply rounded-lg bg-secondary px-4 py-2 text-primary-content transition-transform ease-in-out hover:scale-110
 	}
     .btn-boxy {
-        @apply rounded-none bg-secondary px-4 py-2 text-onSecondary transition-transform ease-in-out hover:scale-110
+        @apply rounded-none bg-secondary px-4 py-2 text-primary-content transition-transform ease-in-out hover:scale-110
     }
 
     .box-rounded {

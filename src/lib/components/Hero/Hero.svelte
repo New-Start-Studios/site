@@ -2,11 +2,18 @@
 	import { config } from '$lib/config';
 </script>
 
-<div class="text-secondary">
-	<h1 class="text-7xl font-bold font-heading">{config.branding.name}</h1>
-	<h3 class="text-3xl">{config.branding.description}</h3>
-	<br />
-	<!-- config.styling.buttonStyleType can be rounded or boxy -->
-	<!-- class names btn-boxy or btn-rounded -->
-	<button class="btn-rounded btn-boxy btn-{config.styling.buttonStyleType} mx-4">Button</button>
+<div class="hero min-h-fit bg-base-100">
+	<div class="hero-content flex-col lg:flex-row mb-32">
+		<img src="/logo.png" alt="{config.branding.name} Logo" class="max-w-sm rounded-lg shadow-2xl" />
+		<div>
+			<h1 class="text-5xl font-bold">{config.branding.name}</h1>
+			<p class="py-6">{config.branding.description}</p>
+			<a href="/games">
+				<button class="btn btn-primary">Play Now!</button>
+			</a>
+			<a href="/apps">
+				<button class="btn btn-primary">Browse Now!</button>
+			</a>
+		</div>
+	</div>
 </div>
