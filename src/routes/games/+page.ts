@@ -13,5 +13,19 @@ export const load = (async ({ fetch, url }) => {
 			(tagParam ? '?tag=' + tagParam : '')
 	);
 	const games: Game[] = await response.json();
-	return { games, searchParam, tagParam };
+	
+	
+	// go through every game to find all tags
+	const allGames = await fetch(PUBLIC_API_BASE_URL + '/api/games');
+	const allGamesJson: Game[] = await allGames.json();
+	let tags: string[] = [];
+	for (let i = 0; i < allGamesJson.length; i++) {
+		for (let j = 0; j < allGamesJson[i].tags.length; j++) {
+			if (!tags.includes(allGamesJson[i].tags[j])) {
+				tags.push(allGamesJson[i].tags[j]);
+			}
+		}
+	}
+
+	return { games, tags, searchParam, tagParam };
 }) satisfies PageLoad;

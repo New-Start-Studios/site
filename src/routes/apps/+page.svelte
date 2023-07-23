@@ -27,7 +27,7 @@
 </svelte:head>
 
 <div class="mb-6 flex justify-center">
-	<form class="flex gap-2" on:submit={() => search()}>
+	<form class="flex gap-2 flex-col sm:flex-row" on:submit={() => search()}>
 		<input
 			type="text"
 			placeholder="Type here"

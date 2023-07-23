@@ -12,14 +12,19 @@
 <!-- To ensure that it renders correctly we will include every variation inside of it and then the class at the end of it will take precedence. -->
 <!-- We only need to have this appear one time throughout the rendered page, but to ensure that it works across all pages it must be placed throughout the codebase. -->
 <a
-	class="box-rounded box-boxy block h-40 w-[18rem] box-{config.styling.contentBoxStyleType}"
+	class="block h-40 w-[18rem] transition-all duration-150 hover:shadow-lg hover:shadow-accent hover:scale-95"
+	class:box-rounded={config.styling.contentBoxStyleType === 'rounded'}
 	href={link}
 	data-sveltekit-reload
 >
-	<div class="relative h-full w-full bg-black box-{config.styling.contentBoxStyleType}">
+	<div
+		class="relative h-full w-full bg-black"
+		class:box-rounded={config.styling.contentBoxStyleType === 'rounded'}
+	>
 		<img
-			class="absolute h-full w-full bg-white object-cover opacity-25 box-{config.styling
-				.contentBoxStyleType}"
+			class="absolute h-full w-full bg-white object-cover opacity-50"
+			class:box-rounded={config.styling.contentBoxStyleType === 'rounded'}
+			loading="lazy"
 			src={image}
 			alt={name}
 		/>

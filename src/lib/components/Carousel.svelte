@@ -50,7 +50,7 @@
 			clientWidth = scrollableDiv.clientWidth;
 		}}
 	>
-		<grid class="flex flex-row justify-start gap-x-4">
+		<grid class="flex flex-row justify-start gap-x-4 pb-5">
 			<slot />
 		</grid>
 	</grid>
