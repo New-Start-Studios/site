@@ -9,6 +9,8 @@
 	let searchQuery: string = '';
 	let contentTitle: string = 'Nothing yet...';
 
+	import { config } from '$lib/config';
+
 	function search(input: string) {
 		let template: string = 'https://www.google.com/search?q=%s&hl=en';
 		try {
@@ -36,21 +38,7 @@
 		return template.replace('%s', encodeURIComponent(input));
 	}
 
-	import { experiments } from '$lib/experiments';
-
-	let searchAds: boolean;
-
 	onMount(async () => {
-		// Ads experiment
-		experiments.fetchOrCreateExperimentData(
-			'searchAds',
-			'2023-08-01',
-			'Adjusts the level of ads shown on the search page.',
-			85,
-			true
-		);
-		searchAds = experiments.shouldShow('searchAds');
-
 		// Register the service worker
 		navigator.serviceWorker.register('/uv.js', { scope: __uv$config.prefix }).then((reg) => {
 			if (reg.installing) {
@@ -63,6 +51,14 @@
 				};
 			}
 		});
+
+		// get the search query from the url
+		const urlParams = new URLSearchParams(window.location.search);
+		const query = urlParams.get('q');
+		if (query) {
+			searchQuery = query;
+			await iframeSearch();
+		}
 	});
 
 	async function iframeSearch() {
@@ -79,8 +75,9 @@
 		iframe.requestFullscreen();
 	}
 
+	let expanded: boolean = false;
 	// Expand the iframe to fill the screen
-	function expandiFrame() {
+	function expandiFrame(): void {
 		const document: Document = window.document;
 		const frame: HTMLIFrameElement = document.getElementById('iframe') as HTMLIFrameElement;
 
@@ -93,10 +90,33 @@
 		frame.style.right = '0px';
 		frame.style.height = '100%';
 		frame.style.width = '100%';
+		frame.style.zIndex = '500';
+		frame.style.border = 'none';
+
+		frame.classList.toggle('rounded-t-lg');
+
+		expanded = true;
+	}
+
+	function shrinkiFrame() {
+		const document: Document = window.document;
+		const frame: HTMLIFrameElement = document.getElementById('iframe') as HTMLIFrameElement;
+
+		document.body.style.overflow = 'auto';
+		// Settings required for the frame to fill the screen
+		frame.style.position = 'relative';
+		frame.style.top = '0px';
+		frame.style.bottom = '0px';
+		frame.style.left = '0px';
+		frame.style.right = '0px';
+		frame.style.height = '100%';
+		frame.style.width = '100%';
 		frame.style.zIndex = '9999';
 		frame.style.border = 'none';
 
 		frame.classList.toggle('rounded-t-lg');
+
+		expanded = false;
 	}
 
 	function reloadiFrame() {
@@ -119,18 +139,15 @@
 		contentTitle = iframe.contentDocument?.title || 'Nothing yet...';
 	}
 
-	import Vert from '$lib/components/Google/Vert.svelte';
-	import Horz from '$lib/components/Google/Horz.svelte';
-	import Leaderboard from '$lib/components/Google/Leaderboard.svelte';
 	let innerWidth: number = 0;
 </script>
 
-<svelte:window bind:innerWidth />
+<svelte:window bind:innerWidth={innerWidth} />
 
 <svelte:head>
-	<title>Kazwire - Search Freely</title>
-	<meta name="description" content="Search freely with Kazwire!" />
-	<meta property="og:description" content="Search freely with Kazwire!" />
+	<title>{config.branding.name} - Search Freely</title>
+	<meta name="description" content="Search freely with {config.branding.name}!" />
+	<meta property="og:description" content="Search freely with {config.branding.name}!" />
 	<script src="/uv/uv.bundle.js" defer></script>
 	<script src="/uv/uv.config.js" defer></script>
 	<script src="/uv.js" defer></script>
@@ -142,22 +159,31 @@
 		class="flex flex-col justify-center space-x-0 space-y-2 md:flex-row md:space-x-2 md:space-y-0"
 	>
 		<input
-			class="focus:shadow-outline h-10 rounded-lg border px-3 text-base placeholder-gray-600"
+			class="input input-bordered w-full max-w-xs"
 			type="text"
 			placeholder="Search for your favorites..."
 			bind:value={searchQuery}
 		/>
-		<button class="btn" type="submit" on:click={async () => await iframeSearch()}> Search </button>
+		<button class="btn btn-primary" type="submit" on:click={async () => await iframeSearch()}>
+			Search
+		</button>
 	</form>
 </div>
+
+{#if expanded}
+	<!-- Button to shrink the iframe -->
+	<button
+		class="absolute left-0 top-0 z-[5000] m-4 rounded-full bg-secondary p-2 opacity-40"
+		on:click={() => shrinkiFrame()}
+	>
+		<Icon class="h-6 w-6 text-secondary-content" icon="ic:round-compress" />
+	</button>
+{/if}
 
 <div class="relative flex flex-row justify-center">
 	<div
 		class="float-left flex h-[calc(80vh-132px)] pb-5 sm:w-full md:w-[820px] lg:w-[1000px] xl:w-full"
 	>
-		{#if innerWidth > 1300 && searchAds}
-			<Vert />
-		{/if}
 		<div class="align-center mb-14 flex-grow">
 			<div id="frame" class="h-full w-full rounded-t-lg bg-white">
 				<iframe
@@ -168,9 +194,7 @@
 				/>
 			</div>
 
-			<div
-				class="relative mt-2 w-full items-center rounded-b-lg bg-tertiary text-black dark:bg-tertiaryDark dark:text-white"
-			>
+			<div class="relative mt-2 w-full items-center rounded-b-lg bg-base-300 text-base-content">
 				<div class="float-right mr-5">
 					<button class="mt-4 fill-white" on:click={() => fullScreen()}>
 						<!-- Full screen -->
@@ -200,13 +224,4 @@
 			</div>
 		</div>
 	</div>
-	{#if innerWidth > 824 && searchAds}
-		<Vert />
-	{/if}
 </div>
-
-{#if innerWidth > 730 && searchAds}
-	<Leaderboard />
-{:else}
-	<Horz />
-{/if}

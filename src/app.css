@@ -4,17 +4,30 @@
 
 @layer components {
 	.btn-rounded {
-		@apply rounded-lg bg-secondary px-4 py-2 text-primary-content transition-transform ease-in-out hover:scale-110
+		@apply rounded-lg bg-secondary px-4 py-2 text-primary-content transition-transform ease-in-out hover:scale-110;
 	}
-    .btn-boxy {
-        @apply rounded-none bg-secondary px-4 py-2 text-primary-content transition-transform ease-in-out hover:scale-110
-    }
+	.btn-boxy {
+		@apply rounded-none bg-secondary px-4 py-2 text-primary-content transition-transform ease-in-out hover:scale-110;
+	}
 
-    .box-rounded {
-        @apply rounded-xl
-    }
+	.box-rounded {
+		@apply rounded-xl;
+	}
 
-    .box-boxy {
-        @apply rounded-none
-    }
+	.box-boxy {
+		@apply rounded-none;
+	}
+
+	@variants responsive {
+		/* Hide scrollbar for Chrome, Safari and Opera */
+		.no-scrollbar::-webkit-scrollbar {
+			display: none;
+		}
+
+		/* Hide scrollbar for IE, Edge and Firefox */
+		.no-scrollbar {
+			-ms-overflow-style: none; /* IE and Edge */
+			scrollbar-width: none; /* Firefox */
+		}
+	}
 }

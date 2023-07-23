@@ -12,8 +12,9 @@
 <!-- To ensure that it renders correctly we will include every variation inside of it and then the class at the end of it will take precedence. -->
 <!-- We only need to have this appear one time throughout the rendered page, but to ensure that it works across all pages it must be placed throughout the codebase. -->
 <a
-	class="box-rounded box-boxy block h-44 w-[20rem] box-{config.styling.contentBoxStyleType}"
+	class="box-rounded box-boxy block h-40 w-[18rem] box-{config.styling.contentBoxStyleType}"
 	href={link}
+	data-sveltekit-reload
 >
 	<div class="relative h-full w-full bg-black box-{config.styling.contentBoxStyleType}">
 		<img
@@ -23,10 +24,10 @@
 			alt={name}
 		/>
 		<div class="absolute bottom-0 left-0 p-2">
-			<h2 class="text-2xl font-bold text-white">
+			<h2 class="text-xl font-bold text-white">
 				{name}
 			</h2>
-			<p class="text-xl text-white">
+			<p class="text-md text-white">
 				{developer}
 			</p>
 		</div>
