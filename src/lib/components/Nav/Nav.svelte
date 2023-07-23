@@ -16,7 +16,7 @@
 	let width: number = 0;
 </script>
 
-<svelte:window bind:outerWidth={width} />
+<svelte:window bind:innerWidth={width} />
 
 <div class="base-content navbar bg-base-300">
 	{#if width > 760}
@@ -25,8 +25,8 @@
 		</div>
 	{:else}
 		<div class="flex-1">
-			<a class="btn btn-ghost text-2xl normal-case" href="/">
-				<img src="/logo.png" alt="{config.branding.name} Logo" class="h-10 w-10 rounded-md" />
+			<a class="btn btn-ghost tooltip tooltip-right normal-case" data-tip="{config.branding.name}" href="/apps">
+				<img src="/logo.png" alt="{config.branding.name} Logo" class="h-full rounded-md" />
 			</a>
 		</div>
 	{/if}
@@ -43,12 +43,12 @@
 				</form>
 			</li>
 			<li class="place-content-center">
-				<a href="/games">
+				<a class="tooltip tooltip-bottom" data-tip="Games" href="/games">
 					<Icon icon="mdi:gamepad-variant" class="text-2xl" />
 				</a>
 			</li>
 			<li class="place-content-center">
-				<a href="/apps">
+				<a class="tooltip tooltip-bottom" data-tip="Apps" href="/apps">
 					<Icon icon="ri:app-store-fill" class="text-2xl" />
 				</a>
 			</li>

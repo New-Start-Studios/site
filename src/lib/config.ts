@@ -13,14 +13,24 @@ export const config = {
 		tiktok: 'https://www.tiktok.com/@example',
 		discord: 'https://discord.gg/example'
 	},
-	// Options: "hero", "main"
+	// Options: "hero", "main", "faq"
 	// Order: top to bottom
-	homeLayoutOrder: ['hero', 'main'],
+	homeLayoutOrder: ['hero', 'faq', 'main'],
+	faq: [
+		{
+			question: 'What is this site?',
+			answer: 'This site is an example site, it is meant to be used as a template for other sites.'
+		},
+		{
+			question: 'What is this site?',
+			answer: 'This site is an example site, it is meant to be used as a template for other sites.'
+		},
+	],
 	styling: {
 		// Options: "boxy", "rounded"
 		buttonStyleType: 'boxy',
 		// Options: "boxy", "rounded"
-		contentBoxStyleType: 'boxy',
+		contentBoxStyleType: 'rounded',
 		daisyUITheme: {
 			"primary": "#9df940",
 			"secondary": "#8d76d3", 
@@ -44,7 +54,8 @@ export const config = {
 		}
 	},
 	fonts: {
-		headingFont: ['Verdana', 'sans-serif'],
-		bodyFont: ['Roboto', 'sans-serif']
+		headingFont: ['Inter', 'sans'],
+		bodyFont: ['Inter', 'sans'],
+		googleFont: "Inter" // imports a single google font
 	}
 } as const;

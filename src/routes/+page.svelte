@@ -3,6 +3,7 @@
 
     import Hero from '$lib/components/Hero/Hero.svelte';
     import Main from '$lib/components/Main/Main.svelte';
+	import Faq from '$lib/components/Faq/Faq.svelte';
 </script>
 
 <svelte:head>
@@ -15,6 +16,9 @@
 {#each config.homeLayoutOrder as layout}
     {#if layout === 'hero'}
         <Hero />
+    {/if}
+    {#if layout === 'faq'}
+        <Faq />
     {/if}
     {#if layout === 'main'}
         <Main />
