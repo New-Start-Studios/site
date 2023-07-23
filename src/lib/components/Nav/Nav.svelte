@@ -59,6 +59,7 @@
 					<option value="black" class="bg-base-100">Black</option>
 					<option value="night" class="bg-base-100">Night</option>
 					<option value="luxury" class="bg-base-100">Luxury</option>
+					<option value="custom" class="bg-base-100">Custom</option>
 				</select>
 			</li>
 		</ul>
