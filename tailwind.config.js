@@ -17,7 +17,7 @@ export default {
 			heading: config.fonts.headingFont
 		}
 	},
-	plugins: [require('daisyui')],
+	plugins: [require('@tailwindcss/typography'), require('daisyui')],
 	daisyui: {
 		themes: [
 			'light',
