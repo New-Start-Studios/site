@@ -25,7 +25,11 @@
 		</div>
 	{:else}
 		<div class="flex-1">
-			<a class="btn btn-ghost tooltip tooltip-right normal-case" data-tip="{config.branding.name}" href="/apps">
+			<a
+				class="btn btn-ghost tooltip tooltip-right normal-case"
+				data-tip={config.branding.name}
+				href="/apps"
+			>
 				<img src="/logo.png" alt="{config.branding.name} Logo" class="h-full rounded-md" />
 			</a>
 		</div>
@@ -34,12 +38,28 @@
 		<ul class="menu menu-horizontal gap-2 px-1">
 			<li class="form-control hidden sm:block">
 				<form on:submit={() => (window.location.href = '/search?q=' + searchQuery)}>
-					<input
-						type="text"
-						placeholder="Search"
-						class="input input-bordered w-24 md:w-auto"
-						bind:value={searchQuery}
-					/>
+					{#if config.features.searchBar}
+						<div class="input input-bordered input-sm flex h-14 flex-row">
+							<input
+								type="text"
+								placeholder="Search here"
+								class="input input-ghost input-sm my-auto w-full max-w-md focus:border-none focus:shadow-none focus:outline-none"
+								bind:value={searchQuery}
+							/>
+							<div class="m-auto hidden min-w-fit sm:block">
+								<kbd class="kbd">ctrl</kbd>
+								+
+								<kbd class="kbd">k</kbd>
+							</div>
+						</div>
+					{:else}
+						<input
+							type="text"
+							placeholder="Search"
+							class="input input-bordered w-24 md:w-auto"
+							bind:value={searchQuery}
+						/>
+					{/if}
 				</form>
 			</li>
 			<li class="place-content-center">
