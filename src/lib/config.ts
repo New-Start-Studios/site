@@ -13,9 +13,15 @@ export const config = {
 		tiktok: 'https://www.tiktok.com/@example',
 		discord: 'https://discord.gg/example'
 	},
+	analytics: {
+		gtmID: 'GTM-MW8JD9VB'
+	},
 	// Options: "hero", "main", "faq"
 	// Order: top to bottom
 	homeLayoutOrder: ['hero', 'faq', 'main'],
+	features: {
+		searchBar: true,
+	},
 	faq: [
 		{
 			question: 'What is this site?',
@@ -27,8 +33,6 @@ export const config = {
 		},
 	],
 	styling: {
-		// Options: "boxy", "rounded"
-		buttonStyleType: 'boxy',
 		// Options: "boxy", "rounded"
 		contentBoxStyleType: 'rounded',
 		daisyUITheme: {
