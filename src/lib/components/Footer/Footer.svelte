@@ -17,9 +17,9 @@
 	</div>
 	<div>
 		<span class="footer-title">Legal</span>
-		<a class="link-hover link" href="/terms-of-service">Terms of use</a>
-		<a class="link-hover link" href="/privacy-policy">Privacy policy</a>
-		<a class="link-hover link" href="/dmca">DMCA</a>
+		<a class="link-hover link" href="/legal/terms-of-service">Terms of use</a>
+		<a class="link-hover link" href="/legal/privacy-policy">Privacy policy</a>
+		<a class="link-hover link" href="/legal/dmca">DMCA</a>
 	</div>
 </footer>
 <footer class="footer border-t border-base-300 bg-base-200 px-10 py-4 text-base-content">
