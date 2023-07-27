@@ -46,7 +46,7 @@
 								class="input input-ghost input-sm my-auto w-full max-w-md focus:border-none focus:shadow-none focus:outline-none"
 								bind:value={searchQuery}
 							/>
-							<div class="m-auto hidden min-w-fit sm:block">
+							<div class="m-auto hidden min-w-fit md:block">
 								<kbd class="kbd">ctrl</kbd>
 								+
 								<kbd class="kbd">k</kbd>
@@ -72,6 +72,13 @@
 					<Icon icon="ri:app-store-fill" class="text-2xl" />
 				</a>
 			</li>
+			{#if config.features.accountCreation}
+				<li class="place-content-center">
+					<a class="tooltip tooltip-bottom" data-tip="Account" href="/profile">
+						<Icon icon="ri:account-circle-fill" class="text-2xl" />
+					</a>
+				</li>
+			{/if}
 			<li class="place-content-center">
 				<select class="select w-full min-w-[6rem] max-w-xs" data-choose-theme>
 					<option value="light" class="bg-base-100">Light</option>

@@ -7,7 +7,8 @@ export const config = {
 	branding: {
 		name: 'Example Site',
 		description: 'This is an example site, this is actually editable in the config file.',
-		slogan: 'Providing better examples since 2023'
+		slogan: 'Providing better examples since 2023',
+		mainDomain: 'https://example.com',
 	},
 	social: {
 		tiktok: 'https://www.tiktok.com/@example',
@@ -21,6 +22,7 @@ export const config = {
 	homeLayoutOrder: ['hero', 'faq', 'main'],
 	features: {
 		searchBar: true,
+		accountCreation: true,
 	},
 	faq: [
 		{

@@ -28,7 +28,7 @@
 					{#if app.name.toLowerCase().includes(search.toLowerCase())}
 						<div class="flex w-full flex-col">
 							<a
-								href="/games/{app.id}"
+								href="/apps/{app.id}"
 								data-sveltekit-reload
 								class="btn btn-primary w-full justify-between"
 							>
