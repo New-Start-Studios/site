@@ -2,6 +2,7 @@ import prisma from "$lib/prisma";
 
 interface Opts {
 	url: URL;
+    request: Request;
 }
 
 
@@ -60,3 +61,59 @@ export async function GET({ url }: Opts): Promise<Response> {
         }
     });
 };
+
+// Update the user given in the request body
+// method PUT
+export async function POST({ url, request }: Opts): Promise<Response> {
+    const userIdQuery = url.searchParams.get("id");
+    if (!userIdQuery) {
+        return new Response("User not found");
+    }
+
+    const user = await prisma.user.findUnique({
+        where: {
+            id: userIdQuery
+        }
+    });
+
+    if (!user) {
+        return new Response("User not found");
+    }
+
+    const body = await request.json();
+    const { username, role } = body;
+
+    if (username) {
+        user.username = username;
+    }
+
+    if (role) {
+        user.role = role;
+    }
+
+    await prisma.user.update({
+        where: {
+            id: userIdQuery
+        },
+        data: user
+    });
+
+
+    return new Response("User updated");
+}
+
+// method DELETE
+export async function DELETE({ url }: Opts): Promise<Response> {
+    const userIdQuery = url.searchParams.get("id");
+    if (!userIdQuery) {
+        return new Response("User not found");
+    }
+
+    await prisma.user.delete({
+        where: {
+            id: userIdQuery
+        }
+    });
+
+    return new Response("User deleted");
+}

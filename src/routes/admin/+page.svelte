@@ -7,19 +7,20 @@
 <article class="prose lg:prose-lg">
 	<h1>Admin Page</h1>
 	<p>This is an admin page.</p>
-	<h2>Users:</h2>
+	<a href="/admin/users">
+		<h2>Users:</h2>
+	</a>
 	<code>
 		<pre>{JSON.stringify(data.users, null, 2)}</pre>
 	</code>
 
-    <h2>Config:</h2>
+	<h2>Config:</h2>
 	<code>
 		<pre>{JSON.stringify(data.config, null, 2)}</pre>
 	</code>
 
-
 	<h2>Game Data:</h2>
-	<code >
+	<code>
 		<pre class="max-h-[50rem]">{JSON.stringify(data.games, null, 2)}</pre>
 	</code>
 
