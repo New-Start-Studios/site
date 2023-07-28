@@ -43,6 +43,12 @@
 			body: JSON.stringify(game)
 		});
 	}
+
+	function deleteGame(id: string) {
+		fetch(`/api/admin/games/delete?id=${id}`, {
+			method: 'DELETE'
+		});
+	}
 </script>
 
 <div class="prose lg:prose-lg">
@@ -131,7 +137,7 @@
 			</div>
 
 			<button
-				class="btn btn-primary mt-4"
+			class="btn btn-primary mt-4 max-w-[10rem]"
 				on:click={() =>
 					createGame({
 						id,
@@ -261,7 +267,10 @@
 		</div>
 	</div>
 
-	<button class="btn btn-primary mt-4" on:click={() => updateGame(selectedGame)}>
+	<button class="btn btn-secondary mt-4" on:click={() => updateGame(selectedGame)}>
 		Update Game
+	</button>
+	<button class="btn btn-error mt-4" on:click={() => deleteGame(selectedGame.id)}>
+		Delete Game
 	</button>
 {/if}
