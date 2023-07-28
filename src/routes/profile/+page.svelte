@@ -16,6 +16,7 @@
 	<div>
 		<p>User id: {data.userId}</p>
 		<p>Username: {data.username}</p>
+		<p>Role: {data.role}</p>
 	</div>
 </div>
 <form method="post" action="?/logout" use:enhance>
