@@ -1,6 +1,5 @@
 <script lang="ts">
 	import type { PageData } from './$types';
-
 	export let data: PageData;
 </script>
 
@@ -18,13 +17,16 @@
 	<code>
 		<pre>{JSON.stringify(data.config, null, 2)}</pre>
 	</code>
-
-	<h2>Game Data:</h2>
+	<a href="/admin/games">
+		<h2>Game Data:</h2>
+	</a>
 	<code>
 		<pre class="max-h-[50rem]">{JSON.stringify(data.games, null, 2)}</pre>
 	</code>
 
-	<h2>App Data:</h2>
+	<a href="/admin/apps">
+		<h2>App Data:</h2>
+	</a>
 	<code>
 		<pre class="max-h-[50rem]">{JSON.stringify(data.apps, null, 2)}</pre>
 	</code>
