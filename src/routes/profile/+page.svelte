@@ -19,6 +19,11 @@
 		<p>Role: {data.role}</p>
 	</div>
 </div>
-<form method="post" action="?/logout" use:enhance>
-	<input type="submit" value="Sign out" class="btn btn-primary mt-6" />
-</form>
+<div class="flex flex-row gap-2">
+	<form method="post" action="?/logout" use:enhance>
+		<input type="submit" value="Sign out" class="btn btn-primary mt-6" />
+	</form>
+	{#if data.role === 'admin'}
+		<a href="/admin" class="btn btn-primary mt-6"> Admin Page </a>
+	{/if}
+</div>
