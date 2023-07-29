@@ -4,7 +4,6 @@ import { config } from '$lib/config';
 
 export const load = (async ({ fetch }) => {
 	const res = await fetch('/api/admin/user');
-	console.log(res);
 
 	if (res.ok) {
 		return {
