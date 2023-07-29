@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { PageData } from './$types';
+	import type { User } from '@prisma/client';
 
 	export let data: PageData;
 
@@ -7,7 +8,7 @@
 
 	let search = '';
 
-	$: filteredUsers = users.filter((user) => {
+	$: filteredUsers = users.filter((user: User) => {
 		return user.username.toLowerCase().includes(search.toLowerCase());
 	});
 
@@ -69,7 +70,7 @@
 					<input type="text" class="input input-bordered" bind:value={user.role} />
 				</div>
 				<button
-					class="btn btn-primary mt-6"
+					class="btn btn-secondary mt-6"
 					on:click={() => editUser(user.id, user.username, user.role)}>Edit</button
 				>
 				<button class="btn btn-error mt-6" on:click={() => deleteUser(user.id)}>Delete</button>
