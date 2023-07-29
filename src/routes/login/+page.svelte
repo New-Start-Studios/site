@@ -1,5 +1,7 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
+
+	export let form: any;
 </script>
 
 <h1 class="mb-2 text-3xl font-bold">Sign in</h1>
@@ -30,3 +32,7 @@
 	</label>
 	<a href="/signup" class="btn btn-secondary">Create an account</a>
 </div>
+
+{#if form?.message}
+    <p style="color: red">{form?.message}</p>
+{/if}
