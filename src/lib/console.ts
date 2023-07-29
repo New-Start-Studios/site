@@ -3,6 +3,33 @@ import { config } from "./config";
 // Shows a custom welcome message
 // --------------------------------------------------------
 
+export function styledMessage(message: string, chip: string) {
+    // Show the name of the service and next to it have a chip saying Info/Warning/Error
+    // Should be the normal text size for both the name and the chip
+    // Name shouldn't have any background color, but the chip should
+
+    const style = [
+        'color: #ffffff',
+        'display: block',
+        'font-size: 1rem',
+        'text-align: center',
+        'font-weight: bold'
+    ].join(';');
+
+    const chipStyle = [
+        'background: #8d76d3',
+        'color: #ffffff',
+        'font-size: 0.75rem',
+        'font-weight: bold',
+        'padding: 0.5rem 0.5rem 0.5rem 0.5rem',
+        'border-radius: 0.5rem',
+        'margin: 1rem 0'
+    ].join(';');
+
+    // Show the console.log with the name of the service and the chip next to it and a new line with the message
+    console.log(`%c${config.branding.name} %c${chip}%c\n${message}`, style, chipStyle, '');
+}
+
 function customMessage() {
     const message = `Welcome to ${config.branding.name}!`;
     const style = [
