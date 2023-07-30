@@ -53,7 +53,7 @@
 		<DefaultBox
 			name={app.name}
 			developer={app.developer}
-			image="/app/img/{app.image}"
+			image="/cdn/app/img/{app.image}"
 			link={'/apps/' + app.id}
 		/>
 	{/each}

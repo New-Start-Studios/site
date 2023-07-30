@@ -34,7 +34,7 @@
 							>
 								<!-- img -->
 								<img
-									src={'/app/img/' + app.image}
+									src={'/cdn/app/img/' + app.image}
 									alt={app.name}
 									class="w-30 h-10 rounded-lg object-cover"
 								/>
@@ -53,7 +53,7 @@
 							>
 								<!-- img -->
 								<img
-									src={'/game/img/' + game.image}
+									src={'/cdn/game/img/' + game.image}
 									alt={game.name}
 									class="w-30 h-10 rounded-lg object-cover"
 								/>

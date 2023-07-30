@@ -23,7 +23,7 @@
 				{#each $page.data.apps as app}
 					<DefaultBox
 						name={app.name}
-						image={'/app/img/' + app.image}
+						image={'/cdn/app/img/' + app.image}
 						developer={app.developer}
 						link={'/apps/' + app.id}
 					/>
@@ -53,7 +53,7 @@
 						{#if game.tags.includes(tag)}
 							<DefaultBox
 								name={game.name}
-								image={'/game/img/' + game.image}
+								image={'/cdn/game/img/' + game.image}
 								developer={game.developer}
 								link={'/games/' + game.id}
 							/>

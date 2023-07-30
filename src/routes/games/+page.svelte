@@ -74,7 +74,7 @@
 		<DefaultBox
 			name={game.name}
 			developer={game.developer}
-			image="/game/img/{game.image}"
+			image="/cdn/game/img/{game.image}"
 			link={'/games/' + game.id}
 		/>
 	{/each}
