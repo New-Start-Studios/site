@@ -133,6 +133,9 @@
 				<label class="label">
 					<span class="label-text">Tags (comma-separated)</span>
 				</label>
+				<label class="label">
+					<span class="label-text label-text-alt">Used Tags: {data.gameTags}</span>
+				</label>
 				<input
 					type="text"
 					placeholder="Tags (comma-separated)"
