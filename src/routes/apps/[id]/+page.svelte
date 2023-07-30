@@ -202,7 +202,7 @@
 					<div class="relative flex h-full items-center justify-center overflow-hidden">
 						<img
 							class="absolute z-20 h-full w-full object-cover opacity-60 blur-lg"
-							src="/app/img/{data.app.image}"
+							src="/cdn/app/img/{data.app.image}"
 							alt="App"
 						/>
 						<div class="absolute z-10 h-full w-full rounded-t-lg bg-black" />

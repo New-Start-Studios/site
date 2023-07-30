@@ -23,7 +23,7 @@ export const config = {
 	homeLayoutOrder: ['hero', 'faq', 'main'],
 	features: {
 		searchBar: true,
-		accountCreation: false,
+		accountCreation: true,
 	},
 	faq: [
 		{

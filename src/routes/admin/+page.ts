@@ -1,6 +1,9 @@
 import type { PageLoad } from './$types';
 import { config } from '$lib/config';
 
+// Disable prerendering
+export const prerender = false;
+
 
 export const load = (async ({ fetch }) => {
 	const res = await fetch('/api/admin/user');
