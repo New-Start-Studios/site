@@ -28,7 +28,7 @@
 			<a
 				class="btn btn-ghost tooltip tooltip-right normal-case"
 				data-tip={config.branding.name}
-				href="/apps"
+				href="/"
 			>
 				<img src="/logo.png" alt="{config.branding.name} Logo" class="h-full rounded-md" />
 			</a>
