@@ -14,7 +14,6 @@ export const actions: Actions = {
 		const formData = await request.formData();
 		const username = formData.get('username');
 		const password = formData.get('password');
-		console.log(username, password);
 		// basic check
 		if (typeof username !== 'string' || username.length < 1 || username.length > 31) {
 			return fail(400, {
@@ -30,12 +29,10 @@ export const actions: Actions = {
 			// find user by key
 			// and validate password
 			const user = await auth.useKey('username', username.toLowerCase(), password);
-			console.log(user.userId);
 			const session = await auth.createSession({
 				userId: user.userId,
 				attributes: {}
 			});
-			console.log(session);
 			locals.auth.setSession(session); // set session cookie
 		} catch (e) {
 			console.log(e);
