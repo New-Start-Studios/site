@@ -83,10 +83,6 @@
 				<select class="select w-full min-w-[6rem] max-w-xs" data-choose-theme>
 					<option value="light" class="bg-base-100">Light</option>
 					<option value="dark" class="bg-base-100">Dark</option>
-					<option value="black" class="bg-base-100">Black</option>
-					<option value="night" class="bg-base-100">Night</option>
-					<option value="luxury" class="bg-base-100">Luxury</option>
-					<option value="custom" class="bg-base-100">Custom</option>
 				</select>
 			</li>
 		</ul>
