@@ -9,7 +9,6 @@ interface Opts {
 export async function POST({ url }: Opts): Promise<Response> {
 	// Get the id from the slug
 	const id = url.pathname.split('/')[3];
-	console.log(id)
 
 	if (id) {
 		const game = await prisma.game.findUnique({

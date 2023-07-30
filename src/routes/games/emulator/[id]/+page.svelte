@@ -17,8 +17,8 @@
 		// Set the varaibles
 		script2.innerHTML = `
             EJS_player = '#game';
-            EJS_gameUrl = '/game/emulated/${game.emulatorFile}'; // Url to Game rom
-            EJS_pathtodata = '/game/emulated/emulatorJS/';
+            EJS_gameUrl = '/cdn/game/emulated/${game.emulatorFile}'; // Url to Game rom
+            EJS_pathtodata = '/cdn/game/emulated/emulatorJS/';
             EJS_core = '${game.emulatorCore}';
         `;
 		// Append the script tag to the body
@@ -27,7 +27,7 @@
 		// Make a script tag
 		const script: HTMLScriptElement = document.createElement('script');
 		// Set the src to the game's loader
-		script.src = '/game/emulated/emulatorJS/loader.js';
+		script.src = '/cdn/game/emulated/emulatorJS/loader.js';
 		// Append the script tag
 		document.body.appendChild(script);
 	});

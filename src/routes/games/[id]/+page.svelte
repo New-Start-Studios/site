@@ -244,7 +244,7 @@
 					<!-- Static game -->
 					{#if data.game.embedURL == null && data.game.emulatorType == null}
 						<iframe
-							src={'/game/static/' + data.game.id + '/index.html'}
+							src={'/cdn/game/static/' + data.game.id + '/index.html'}
 							class="h-full w-full rounded-t-lg bg-white opacity-0"
 							id="iframe"
 							title={data.game.name}
