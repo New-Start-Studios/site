@@ -2,7 +2,7 @@ import type { PageLoad } from './$types';
 import type { Game } from '@prisma/client';
 import { PUBLIC_API_BASE_URL } from '$env/static/public';
 
-export const prerender = true;
+export const prerender = false;
 
 export const load = (async ({ fetch }) => {
 	const responseGames = await fetch(
