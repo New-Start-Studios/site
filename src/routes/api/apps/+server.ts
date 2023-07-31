@@ -4,6 +4,8 @@ interface Opts {
 	url: URL;
 }
 
+export const prerender = false;
+
 export async function GET({ url }: Opts): Promise<Response> {
 	// See if the user is searching for a specific game
 	const search = url.searchParams.get('search') || '';
