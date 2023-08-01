@@ -8,9 +8,16 @@
 <form method="post" use:enhance>
 	<div class="form-control w-full max-w-xs">
 		<label class="label">
-			<span class="label-text">Username</span>
+			<span class="label-text">Email</span>
 		</label>
-		<input name="username" id="username" class="input input-primary w-full max-w-xs" /><br />
+		<input name="email" id="email" class="input input-primary w-full max-w-xs" /><br />
+	</div>
+
+	<div class="form-control w-full max-w-xs">
+		<label class="label">
+			<span class="label-text">Display Name</span>
+		</label>
+		<input name="display_name" id="display_name" class="input input-primary w-full max-w-xs" /><br />
 	</div>
 
 	<div class="form-control w-full max-w-xs">

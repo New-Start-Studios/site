@@ -12,23 +12,27 @@ export const load: PageServerLoad = async ({ locals }) => {
 export const actions: Actions = {
 	default: async ({ request, locals }) => {
 		const formData = await request.formData();
-		const username = formData.get('username');
+		const email = formData.get('email');
 		const password = formData.get('password');
 		// basic check
-		if (typeof username !== 'string' || username.length < 1 || username.length > 31) {
-			return fail(400, {
-				message: 'Invalid username'
+		if (typeof email !== "string" || email.length < 1 || email.length > 255) {
+			return new Response("Invalid email", {
+				status: 400
 			});
 		}
-		if (typeof password !== 'string' || password.length < 1 || password.length > 255) {
-			return fail(400, {
-				message: 'Invalid password'
+		if (
+			typeof password !== "string" ||
+			password.length < 1 ||
+			password.length > 255
+		) {
+			return new Response("Invalid password", {
+				status: 400
 			});
 		}
 		try {
 			// find user by key
 			// and validate password
-			const user = await auth.useKey('username', username.toLowerCase(), password);
+			const user = await auth.useKey('email', email.toLowerCase(), password);
 			const session = await auth.createSession({
 				userId: user.userId,
 				attributes: {}
@@ -43,7 +47,7 @@ export const actions: Actions = {
 				// user does not exist
 				// or invalid password
 				return fail(400, {
-					message: 'Incorrect username of password'
+					message: 'Incorrect email or password'
 				});
 			}
 			return fail(500, {

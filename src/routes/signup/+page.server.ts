@@ -15,18 +15,25 @@ export const actions: Actions = {
         }
 
 		const formData = await request.formData();
-		const username = formData.get("username");
+		const email = formData.get("email");
+		const display_name = formData.get("display_name");
 		const password = formData.get("password");
-		// basic check
-		if (
-			typeof username !== "string" ||
-			username.length < 4 ||
-			username.length > 31
-		) {
+
+		// check if email is valid
+		const isValidEmail = (maybeEmail: unknown): maybeEmail is string => {
+			if (typeof maybeEmail !== "string") return false;
+			if (maybeEmail.length > 255) return false;
+			const emailRegexp = /^.+@.+$/; // [one or more character]@[one or more character]
+			return emailRegexp.test(maybeEmail);
+		};
+
+		if (!isValidEmail(email)) {
 			return fail(400, {
-				message: "Invalid username"
+				message: "Invalid email"
 			});
 		}
+
+		// basic check
 		if (
 			typeof password !== "string" ||
 			password.length < 6 ||
@@ -39,12 +46,15 @@ export const actions: Actions = {
 		try {
 			const user = await auth.createUser({
 				key: {
-					providerId: "username", // auth method
-					providerUserId: username.toLowerCase(), // unique id when using "username" auth method
+					providerId: "email", // auth method
+					providerUserId: email.toLowerCase(), // unique id when using "username" auth method
 					password // hashed by Lucia
 				},
 				attributes: {
-					username
+					email: email.toLowerCase(),
+					// for now we will set the email as verified
+					email_verified: true,
+					display_name: display_name ?? email
 				}
 			});
 			const session = await auth.createSession({
@@ -59,7 +69,7 @@ export const actions: Actions = {
 				e instanceof PrismaClientKnownRequestError
 			) {
 				return fail(400, {
-					message: "Username already taken"
+					message: "Account already exists with that email"
 				});
 			}
 			return fail(500, {

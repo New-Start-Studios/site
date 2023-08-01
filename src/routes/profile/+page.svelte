@@ -21,12 +21,20 @@
 <div class="flex flex-row items-center gap-20">
 	<div class="avatar placeholder">
 		<div class="w-24 rounded-full bg-neutral-focus text-neutral-content">
-			<span class="text-3xl">{data.username[0]}</span>
+			<span class="text-3xl">{data.display_name[0]}</span>
 		</div>
 	</div>
 	<div>
 		<p>User id: {data.userId}</p>
-		<p>Username: {data.username}</p>
+		<p>
+			Email: {data.email}
+			{#if data.email_verified}
+				<span class="text-success-content px-2 py-1 rounded-full bg-success"> Verified </span>
+			{:else}
+			<span class="text-error-content px-2 py-1 rounded-full bg-error"> Not verified </span>
+			{/if}
+		</p>
+		<p>Display Name: {data.display_name}</p>
 		<p>Role: {data.role}</p>
 	</div>
 </div>

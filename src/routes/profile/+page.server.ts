@@ -9,7 +9,9 @@ export const load: PageServerLoad = async ({ locals }) => {
 	if (!session) throw redirect(302, "/login");
 	return {
 		userId: session.user.userId,
-		username: session.user.username,
+		email: session.user.email,
+		display_name: session.user.display_name,
+		email_verified: session.user.email_verified,
 		role: session.user.role
 	};
 };

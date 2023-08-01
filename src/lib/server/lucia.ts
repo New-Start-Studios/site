@@ -17,7 +17,9 @@ export const auth = lucia({
 
 	getUserAttributes: (data) => {
 		return {
-			username: data.username,
+			email: data.email,
+			email_verified: data.email_verified, // `Boolean(data.email_verified)` if stored as an integer,
+			display_name: data.display_name,
 			role: data.role,
 		};
 	}
