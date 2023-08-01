@@ -18,6 +18,12 @@ declare global {
 			email_verified: boolean;
 			display_name: string;
 			role: string;
+
+			// custom attributes
+			loved_games: string[];
+			played_games: string[];
+			loved_apps: string[];
+			played_apps: string[];
 		};
 		type DatabaseSessionAttributes = {};
 	}

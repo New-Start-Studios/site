@@ -3,7 +3,9 @@ import type { App } from '@prisma/client';
 import type { PageLoad } from './$types';
 import { redirect } from '@sveltejs/kit';
 
-export const load = (async ({ params, fetch }) => {
+export const prerender = false;
+
+export const load = (async ({ params, fetch, data }) => {
 	// Get the slug of the URL
 	const slug: string = params.id;
 
@@ -17,7 +19,8 @@ export const load = (async ({ params, fetch }) => {
 	const app: App = await response.json();
 
 	return {
-        // Return the app
+		...data,
+		// Return the app
         app: app,
     };
 }) satisfies PageLoad;

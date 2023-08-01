@@ -7,14 +7,13 @@ export const prerender = false;
 
 export const load = (async ({ fetch, url }) => {
 	const searchParam = url.searchParams.get('search') || '';
-	const tagParam = url.searchParams.get('tag') || '';
 
 	const response = await fetch(
 		PUBLIC_API_BASE_URL +
 			'/api/apps' +
-			(searchParam ? '?search=' + searchParam : '') +
-			(tagParam ? '?tag=' + tagParam : '')
+			(searchParam ? '?search=' + searchParam : '')
 	);
 	const apps: App[] = await response.json();
-	return { apps, searchParam, tagParam };
+
+	return { apps, searchParam };
 }) satisfies PageLoad;

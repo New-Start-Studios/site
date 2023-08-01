@@ -21,6 +21,12 @@ export const auth = lucia({
 			email_verified: data.email_verified, // `Boolean(data.email_verified)` if stored as an integer,
 			display_name: data.display_name,
 			role: data.role,
+
+			// custom attributes
+			loved_games: data.loved_games,
+			played_games: data.played_games,
+			loved_apps: data.loved_apps,
+			played_apps: data.played_apps
 		};
 	}
 });

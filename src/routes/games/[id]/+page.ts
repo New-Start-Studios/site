@@ -5,7 +5,7 @@ import { redirect } from '@sveltejs/kit';
 
 export const prerender = false;
 
-export const load = (async ({ params, fetch }) => {
+export const load = (async ({ params, fetch, data }) => {
 	// Get the slug of the URL
 	const slug: string = params.id;
 
@@ -19,7 +19,8 @@ export const load = (async ({ params, fetch }) => {
 	const game: Game = await response.json();
 
 	return {
-        // Return the game
+		...data,
+		// Return the game
         game: game,
     };
 }) satisfies PageLoad;

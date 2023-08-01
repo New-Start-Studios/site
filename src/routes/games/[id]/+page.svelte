@@ -11,6 +11,8 @@
 
 	import { onMount } from 'svelte';
 
+	import { enhance } from '$app/forms';
+
 	// Turns a search into a valid URL
 	function search(input: string) {
 		let template: string = 'https://www.google.com/search?q=%s&hl=en';
@@ -42,7 +44,7 @@
 	function encodeURL(url: string): string {
 		if (!browser) {
 			return url;
-		} 
+		}
 		// check if the service worker is installed
 		navigator.serviceWorker.getRegistrations().then((registrations) => {
 			if (registrations.length === 0) {
@@ -134,6 +136,7 @@
 
 	import Icon from '@iconify/svelte';
 	import { browser } from '$app/environment';
+	import { page } from '$app/stores';
 
 	let innerWidth: number = 0;
 
@@ -170,8 +173,14 @@
 <svelte:window bind:innerWidth={innerWidth} />
 <svelte:head>
 	<title>{config.branding.name} - {data.game.name}</title>
-	<meta name="description" content="Play {data.game.name} for free now on {config.branding.name}!" />
-	<meta property="og:description" content="Play {data.game.name} for free now on {config.branding.name}!" />
+	<meta
+		name="description"
+		content="Play {data.game.name} for free now on {config.branding.name}!"
+	/>
+	<meta
+		property="og:description"
+		content="Play {data.game.name} for free now on {config.branding.name}!"
+	/>
 
 	<script src="/uv/uv.bundle.js" defer></script>
 	<script src="/uv/uv.config.js" defer></script>
@@ -294,10 +303,17 @@
 					</button>
 				</div>
 				<div class="float-right mr-5">
-					<button id="heart" class="mt-4" on:click={() => alert('Not implimented.')}>
-						<!-- Heart -->
-						<Icon class="h-6 w-6" icon="mdi:heart-outline" />
-					</button>
+					<form method="POST" use:enhance>
+						<button id="heart" class="mt-4" formaction="?/love">
+							<!-- Heart -->
+							<!-- if the loved_games array includes the game id show the heart -->
+							{#if data.loved_games !== undefined && data.loved_games.includes(data.game.id)}
+								<Icon class="h-6 w-6 text-red-500" icon="mdi:heart" />
+							{:else}
+								<Icon class="h-6 w-6" icon="mdi:heart-outline" />
+							{/if}
+						</button>
+					</form>
 				</div>
 				<div class="flex">
 					<!-- Logo -->

@@ -27,6 +27,7 @@ model Game {
   emulatorCore String?
 
   views Int @default(0)
+  loves Int @default(0)
 }
 
 model App {
@@ -38,6 +39,7 @@ model App {
   embedURL    String
 
   views Int @default(0)
+  loves Int @default(0)
 }
 
 model User {
@@ -47,6 +49,14 @@ model User {
   display_name   String
   role           String  @default("user")
 
+  // custom fields
+  loved_games  String[] @default([])
+  played_games String[] @default([])
+
+  loved_apps  String[] @default([])
+  played_apps String[] @default([])
+
+  // auth
   auth_session Session[]
   auth_key     Key[]
 }

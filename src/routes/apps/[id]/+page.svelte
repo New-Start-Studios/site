@@ -11,6 +11,8 @@
 
 	import { onMount } from 'svelte';
 
+	import { enhance } from '$app/forms';
+
 	// Turns a search into a valid URL
 	function search(input: string) {
 		let template: string = 'https://www.google.com/search?q=%s&hl=en';
@@ -42,8 +44,7 @@
 	function encodeURL(url: string): string {
 		if (!browser) {
 			return url;
-		} 
-
+		}
 		// check if the service worker is installed
 		navigator.serviceWorker.getRegistrations().then((registrations) => {
 			if (registrations.length === 0) {
@@ -135,6 +136,7 @@
 
 	import Icon from '@iconify/svelte';
 	import { browser } from '$app/environment';
+	import { page } from '$app/stores';
 
 	let innerWidth: number = 0;
 
@@ -221,7 +223,7 @@
 								on:click={() => addView()}
 								on:click={() => loadFrame()}
 							>
-								Play Now
+								Browse Now
 								<Icon icon="carbon:play-filled" class="my-auto ml-1 inline-block" />
 							</button>
 						</div>
@@ -245,15 +247,16 @@
 							</div>
 						</div>
 					{/if}
-
 					<!-- Proxied app -->
-					<iframe
-						class="h-full w-full rounded-t-lg bg-white opacity-0"
-						id="iframe"
-						title={data.app.name}
-						src={encodeURL(data.app.embedURL)}
-						on:load={() => loadedApp()}
-					/>
+					{#if data.app.embedURL != null}
+						<iframe
+							class="h-full w-full rounded-t-lg bg-white opacity-0"
+							id="iframe"
+							title={data.app.name}
+							src={encodeURL(data.app.embedURL)}
+							on:load={() => loadedApp()}
+						/>
+					{/if}
 				{/if}
 			</div>
 
@@ -271,10 +274,17 @@
 					</button>
 				</div>
 				<div class="float-right mr-5">
-					<button id="heart" class="mt-4" on:click={() => alert('Not implimented.')}>
-						<!-- Heart -->
-						<Icon class="h-6 w-6" icon="mdi:heart-outline" />
-					</button>
+					<form method="POST" use:enhance>
+						<button id="heart" class="mt-4" formaction="?/love">
+							<!-- Heart -->
+							<!-- if the loved_apps array includes the app id show the heart -->
+							{#if data.loved_apps !== undefined && data.loved_apps.includes(data.app.id)}
+								<Icon class="h-6 w-6 text-red-500" icon="mdi:heart" />
+							{:else}
+								<Icon class="h-6 w-6" icon="mdi:heart-outline" />
+							{/if}
+						</button>
+					</form>
 				</div>
 				<div class="flex">
 					<!-- Logo -->
@@ -306,7 +316,7 @@
 		<div class="my-2 h-[2px] w-10 rounded-lg bg-primary" />
 		<div class="flex">
 			<p>
-				{data.app.views} Play{#if data.app.views != 1}s{/if}
+				{data.app.views} View{#if data.app.views != 1}s{/if}
 			</p>
 		</div>
 	</div>
