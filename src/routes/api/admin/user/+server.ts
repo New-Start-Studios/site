@@ -28,7 +28,7 @@ export async function GET({ url }: Opts): Promise<Response> {
                 skip: (page - 1) * NUM_TO_SHOW,
                 take: NUM_TO_SHOW,
                 orderBy: {
-                    username: "asc"
+                    email: "asc"
                 }
             });
 
@@ -37,7 +37,7 @@ export async function GET({ url }: Opts): Promise<Response> {
             const users = await prisma.user.findMany({
                 take: NUM_TO_SHOW,
                 orderBy: {
-                    username: "asc"
+                    email: "asc"
                 }
             });
 
@@ -47,7 +47,7 @@ export async function GET({ url }: Opts): Promise<Response> {
 
     const user = await prisma.user.findUnique({
         where: {
-            username: userQuery
+            email: userQuery
         }
     });
 
@@ -81,10 +81,14 @@ export async function POST({ url, request }: Opts): Promise<Response> {
     }
 
     const body = await request.json();
-    const { username, role } = body;
+    const { display_name, role, email } = body;
 
-    if (username) {
-        user.username = username;
+    if (email) { 
+        user.email = email;
+    }
+
+    if (display_name) {
+        user.display_name = display_name;
     }
 
     if (role) {

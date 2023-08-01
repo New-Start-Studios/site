@@ -9,7 +9,7 @@
 	let search = '';
 
 	$: filteredUsers = users.filter((user: User) => {
-		return user.username.toLowerCase().includes(search.toLowerCase());
+		return user.email.toLowerCase().includes(search.toLowerCase());
 	});
 
 	function deleteUser(id: string) {
@@ -18,10 +18,11 @@
 		});
 	}
 
-	function editUser(id: string, username: string, role: string) {
+	function editUser(id: string, email: string, display_name: string, role: string) {
 		console.log(
 			JSON.stringify({
-				username: username,
+				email: email,
+				display_name: display_name,
 				role: role
 			})
 		);
@@ -31,7 +32,8 @@
 				'Content-Type': 'application/json'
 			},
 			body: JSON.stringify({
-				username: username,
+				email: email,
+				display_name: display_name,
 				role: role
 			})
 		});
@@ -45,10 +47,10 @@
 <!-- /api/admin/user POST request to modify user -->
 <!-- /api/admin/user DELETE request to delete user -->
 
-<!-- input field to sort users by username-->
+<!-- input field to sort users by email-->
 <input
 	type="text"
-	placeholder="Search by username"
+	placeholder="Search by email"
 	class="input input-bordered mb-6"
 	bind:value={search}
 />
@@ -58,20 +60,22 @@
 			<div class="flex flex-row items-center gap-20">
 				<div class="avatar placeholder">
 					<div class="w-24 rounded-full bg-neutral-focus text-neutral-content">
-						<span class="text-3xl">{user.username[0]}</span>
+						<span class="text-3xl">{user.email[0]}</span>
 					</div>
 				</div>
 				<div>
 					<p>User id:</p>
 					<input type="text" class="input input-disabled" bind:value={user.id} readonly />
-					<p>Username:</p>
-					<input type="text" class="input input-bordered" bind:value={user.username} />
+					<p>Display Name:</p>
+					<input type="text" class="input input-bordered" bind:value={user.display_name} />
+					<p>Email:</p>
+					<input type="text" class="input input-bordered" bind:value={user.email} />
 					<p>Role:</p>
 					<input type="text" class="input input-bordered" bind:value={user.role} />
 				</div>
 				<button
 					class="btn btn-secondary mt-6"
-					on:click={() => editUser(user.id, user.username, user.role)}>Edit</button
+					on:click={() => editUser(user.id, user.email, user.display_name, user.role)}>Edit</button
 				>
 				<button class="btn btn-error mt-6" on:click={() => deleteUser(user.id)}>Delete</button>
 			</div>
