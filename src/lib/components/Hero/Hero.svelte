@@ -7,7 +7,7 @@
 		<img
 			src="/logo.png"
 			alt="{config.branding.name} Logo"
-			class="w-full max-w-sm rounded-lg shadow-2xl"
+			class="w-full max-w-sm rounded-lg drop-shadow-2xl"
 		/>
 		<div>
 			<h1 class="text-5xl font-bold">{config.branding.name}</h1>
