@@ -8,6 +8,7 @@
 
 <svelte:head>
 	<title>{config.branding.name}</title>
+	<meta property="og:title" content="{config.branding.name}" />
 	<meta name="description" content="Play and browse for free now on {config.branding.name}!" />
 	<meta
 		property="og:description"

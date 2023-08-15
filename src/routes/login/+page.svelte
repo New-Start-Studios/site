@@ -10,7 +10,7 @@
 		<label class="label">
 			<span class="label-text">Email</span>
 		</label>
-		<input name="email" id="email" class="input input-primary w-full max-w-xs" /><br />
+		<input name="email" id="email" type="email" class="input input-primary w-full max-w-xs" /><br />
 	</div>
 
 	<div class="form-control w-full max-w-xs">

@@ -146,6 +146,7 @@
 
 <svelte:head>
 	<title>{config.branding.name} - Search Freely</title>
+	<meta property="og:title" content="{config.branding.name} - Search Freely" />
 	<meta name="description" content="Search freely with {config.branding.name}!" />
 	<meta property="og:description" content="Search freely with {config.branding.name}!" />
 	<script src="/uv/uv.bundle.js" defer></script>

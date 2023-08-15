@@ -4,6 +4,7 @@
 
 <svelte:head>
 	<title>{config.branding.name} - Privacy Policy</title>
+	<meta property="og:title" content="{config.branding.name} - Privacy Policy" />
 	<meta name="description" content="Play and browse for free now on {config.branding.name}!" />
 	<meta
 		property="og:description"

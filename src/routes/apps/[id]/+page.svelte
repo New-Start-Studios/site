@@ -173,6 +173,7 @@
 <svelte:window bind:innerWidth={innerWidth} />
 <svelte:head>
 	<title>{config.branding.name} - {data.app.name}</title>
+	<meta name="title" content="{config.branding.name} - {data.app.name}" />
 	<meta name="description" content="Play {data.app.name} for free now on {config.branding.name}!" />
 	<meta
 		property="og:description"
