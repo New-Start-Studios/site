@@ -76,8 +76,14 @@
 		});
 	}
 
+	let canShare: boolean = false;
 	onMount(() => {
 		registerServiceWorker();
+
+		// Check if the browser supports the share API
+		if (navigator.canShare({ url: window.location.href })) {
+			canShare = true;
+		}
 	});
 
 	// Fullscreen the iframe
@@ -173,8 +179,11 @@
 <svelte:window bind:innerWidth={innerWidth} />
 <svelte:head>
 	<title>{config.branding.name} - {data.app.name}</title>
-	<meta name="title" content="{config.branding.name} - {data.app.name}" />
-	<meta name="description" content="Play {data.app.name} for free now on {config.branding.name}!" />
+	<meta property="og:title" content="{config.branding.name} - {data.app.name}" />
+	<meta
+		name="description"
+		content="Play {data.app.name} for free now on {config.branding.name}!"
+	/>
 	<meta
 		property="og:description"
 		content="Play {data.app.name} for free now on {config.branding.name}!"
@@ -320,5 +329,14 @@
 				{data.app.views} View{#if data.app.views != 1}s{/if}
 			</p>
 		</div>
+		{#if canShare}
+			<button
+				class="btn btn-primary mt-4"
+				on:click={() => navigator.share({ url: window.location.href })}
+			>
+				Share
+				<Icon icon="mdi:share-variant" class="text-xl" />
+			</button>
+		{/if}
 	</div>
 </div>

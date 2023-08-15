@@ -76,8 +76,14 @@
 		});
 	}
 
+	let canShare: boolean = false;
 	onMount(() => {
 		registerServiceWorker();
+
+		// Check if the browser supports the share API
+		if (navigator.canShare({ url: window.location.href })) {
+			canShare = true;
+		}
 	});
 
 	// Fullscreen the iframe
@@ -351,6 +357,15 @@
 		</div>
 		{#if data.game.tags.length > 0}
 			<div class="mt-1 flex flex-row flex-wrap gap-2" />
+		{/if}
+		{#if canShare}
+			<button
+				class="btn btn-primary mt-4"
+				on:click={() => navigator.share({ url: window.location.href })}
+			>
+				Share
+				<Icon icon="mdi:share-variant" class="text-xl" />
+			</button>
 		{/if}
 	</div>
 </div>
