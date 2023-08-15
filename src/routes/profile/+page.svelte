@@ -13,12 +13,9 @@
 </script>
 
 <svelte:head>
-	<title>{config.branding.name} - Profile</title>
-	<meta name="description" content="Play and browse for free now on {config.branding.name}!" />
-	<meta
-		property="og:description"
-		content="Play and browse for free now on {config.branding.name}!"
-	/>
+	<title>Profile</title>
+	<meta name="description" content="View your profile" />
+	<meta name="robots" content="noindex" />
 </svelte:head>
 
 <h1 class="mb-2 text-3xl font-bold">Profile</h1>

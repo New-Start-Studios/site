@@ -4,6 +4,12 @@
 	export let form: any;
 </script>
 
+<svelte:head>
+	<title>Sign in</title>
+	<meta name="description" content="Sign in to your account" />
+	<meta name="robots" content="noindex" />
+</svelte:head>
+
 <h1 class="mb-2 text-3xl font-bold">Sign in</h1>
 <form method="post" use:enhance>
 	<div class="form-control w-full max-w-xs">
