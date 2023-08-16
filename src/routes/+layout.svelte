@@ -47,9 +47,6 @@
 			.googleFont}:wght@100;200;300;400;500;600;700;800;900&display=swap"
 		rel="stylesheet"
 	/>
-
-	<!-- Favicon -->
-	<link rel="icon" href="/favicon.ico" />
 </svelte:head>
 
 <Gtm gtmId={config.analytics.gtmID} />
