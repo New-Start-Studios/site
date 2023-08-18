@@ -1,7 +1,3 @@
-<script lang="ts" context="module">
-	declare var __uv$config: any;
-</script>
-
 <script lang="ts">
 	import Icon from '@iconify/svelte';
 	import { onMount } from 'svelte';
@@ -40,17 +36,19 @@
 
 	onMount(async () => {
 		// Register the service worker
-		navigator.serviceWorker.register('/uv.js', { scope: __uv$config.prefix }).then((reg) => {
-			if (reg.installing) {
-				const sw = reg.installing || reg.waiting;
-				sw.onstatechange = function () {
-					if (sw.state === 'installed') {
-						// SW installed.  Refresh page so SW can respond with SW-enabled page.
-						window.location.reload();
-					}
-				};
-			}
-		});
+		navigator.serviceWorker
+			.register('/pxy.js', { scope: '/~/'})
+			.then((reg) => {
+				if (reg.installing) {
+					const sw = reg.installing || reg.waiting;
+					sw.onstatechange = function () {
+						if (sw.state === 'installed') {
+							// SW installed.  Refresh page so SW can respond with SW-enabled page.
+							window.location.reload();
+						}
+					};
+				}
+			});
 
 		// get the search query from the url
 		const urlParams = new URLSearchParams(window.location.search);
@@ -65,13 +63,16 @@
 		// Get the iframe
 		let iframe: HTMLIFrameElement = document.getElementById('iframe') as HTMLIFrameElement;
 
-		// Set the iframe source to the search query
-		iframe.src = __uv$config.prefix + __uv$config.encodeUrl(search(searchQuery));
+		// Make a post request to the service worker /service/route with the search query as the url
+		const encodedURL = search(searchQuery);
+		const proxyType = config.proxyType;
+		iframe.src = `/~/${proxyType}/${encodedURL}`;
 	}
 
 	// Fullscreen the iframe
 	function fullScreen() {
 		const iframe: HTMLIFrameElement = document.getElementById('iframe') as HTMLIFrameElement;
+
 		iframe.requestFullscreen();
 	}
 
@@ -149,9 +150,9 @@
 	<meta property="og:title" content="{config.branding.name} - Search Freely" />
 	<meta name="description" content="Search freely with {config.branding.name}!" />
 	<meta property="og:description" content="Search freely with {config.branding.name}!" />
+
 	<script src="/uv/uv.bundle.js" defer></script>
 	<script src="/uv/uv.config.js" defer></script>
-	<script src="/uv.js" defer></script>
 </svelte:head>
 
 <!-- Search bar -->

@@ -1,7 +1,3 @@
-<script lang="ts" context="module">
-	declare var __uv$config: any;
-</script>
-
 <script lang="ts">
 	import type { PageData } from './$types';
 	export let data: PageData;
@@ -41,29 +37,9 @@
 		return template.replace('%s', encodeURIComponent(input));
 	}
 
-	function encodeURL(url: string): string {
-		if (!browser) {
-			return url;
-		}
-		// check if the service worker is installed
-		navigator.serviceWorker.getRegistrations().then((registrations) => {
-			if (registrations.length === 0) {
-				// Service worker is not installed so register it
-				registerServiceWorker();
-			}
-		});
-
-		return __uv$config.prefix + __uv$config.encodeUrl(search(url));
-	}
-
 	function registerServiceWorker() {
 		// Register the service worker
-		if (__uv$config.prefix === undefined) {
-			console.error('Service worker prefix is undefined');
-			// wait 5 seconds and try again
-			setTimeout(registerServiceWorker, 5000);
-		}
-		navigator.serviceWorker.register('/uv.js', { scope: __uv$config.prefix }).then((reg) => {
+		navigator.serviceWorker.register('/pxy.js', { scope: '/~/' }).then((reg) => {
 			if (reg.installing) {
 				const sw = reg.installing || reg.waiting;
 				sw.onstatechange = function () {
@@ -141,8 +117,6 @@
 	}
 
 	import Icon from '@iconify/svelte';
-	import { browser } from '$app/environment';
-	import { page } from '$app/stores';
 
 	let innerWidth: number = 0;
 
@@ -191,7 +165,8 @@
 
 	<script src="/uv/uv.bundle.js" defer></script>
 	<script src="/uv/uv.config.js" defer></script>
-	<script src="/uv.js" defer></script>
+	<script src="/dynamic/dynamic.config.js" defer></script>
+	<script src="/pxy.js" defer></script>
 </svelte:head>
 
 {#if expanded}
@@ -289,7 +264,7 @@
 							class="h-full w-full rounded-t-lg bg-white opacity-0"
 							id="iframe"
 							title={data.game.name}
-							src={encodeURL(data.game.embedURL)}
+							src={`/~/${config.proxyType}/${encodeURIComponent(data.game.embedURL)}`}
 							on:load={() => loadedGame()}
 						/>
 					{/if}

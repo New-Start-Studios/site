@@ -18,9 +18,11 @@ export const config = {
 	analytics: {
 		gtmID: 'GTM-MW8JD9VB'
 	},
-	// Options: "hero", "main", "faq"
+	// Options: "hero", "hero2", "main", "faq"
 	// Order: top to bottom
 	homeLayoutOrder: ['hero', 'faq', 'main'],
+	// Options: "uv", "dynamic"
+	proxyType: 'dynamic',
 	features: {
 		searchBar: true,
 		accountCreation: true,
