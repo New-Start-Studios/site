@@ -2,6 +2,7 @@
 	import { config } from '$lib/config';
 
 	import Hero from '$lib/components/Hero/Hero.svelte';
+	import Hero2 from '$lib/components/Hero/Hero2.svelte';
 	import Main from '$lib/components/Main/Main.svelte';
 	import Faq from '$lib/components/Faq/Faq.svelte';
 </script>
@@ -20,6 +21,9 @@
 {#each config.homeLayoutOrder as layout}
 	{#if layout === 'hero'}
 		<Hero />
+	{/if}
+	{#if layout === 'hero2'}
+		<Hero2 />
 	{/if}
 	{#if layout === 'faq'}
 		<Faq />
