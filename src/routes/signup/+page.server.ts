@@ -33,6 +33,19 @@ export const actions: Actions = {
 			});
 		}
 
+		const isValidDisplayName = (maybeDisplayName: unknown): maybeDisplayName is string => {
+			if (typeof maybeDisplayName !== "string") return false;
+			if (maybeDisplayName.length > 45) return false;
+			
+			return true;
+		};
+
+		if (!isValidDisplayName(display_name)) {
+			return fail(400, {
+				message: "Invalid display name"
+			});
+		}
+
 		// basic check
 		if (
 			typeof password !== "string" ||
