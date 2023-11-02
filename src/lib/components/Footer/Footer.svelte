@@ -9,6 +9,7 @@
 		<a class="link-hover link" href="/games">Games</a>
 		<a class="link-hover link" href="/apps">Apps</a>
 		<a class="link-hover link" href="/search">Search</a>
+		<a class="link-hover link" href="/settings">Settings</a>
 	</div>
 	<div>
 		<span class="footer-title">Company</span>

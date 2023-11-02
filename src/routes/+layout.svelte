@@ -2,6 +2,7 @@
 	import Footer from '$lib/components/Footer/Footer.svelte';
 	import Nav from '$lib/components/Nav/Nav.svelte';
 	import Gtm from '$lib/components/Collection/GTM.svelte';
+	import { browser } from "$app/environment";
 	import { config } from '$lib/config';
 	import '../app.css';
 	import customMessage from '$lib/console';
@@ -11,8 +12,20 @@
 	// if control  + k is pressed, focus the search bar and ensure the browser doesn't do anything
 	onMount(() => {
 		customMessage();
+		let tabName = localStorage.getItem('tabName');
+		let tabIcon = localStorage.getItem('tabIcon');
+
+		if (tabName) document.getElementsByTagName('title')[0].innerText = tabName;
+		if (tabIcon) (document.getElementById('favicon') as HTMLLinkElement).href = tabIcon;
 
 		window.addEventListener('keydown', (e) => {
+			if (browser) {
+				let panicKey = localStorage.getItem('panicKey');
+				let panicLink = localStorage.getItem('panicLink');
+
+				if (e.key == panicKey) location.assign(panicLink as string);
+			}
+
 			if (e.ctrlKey && e.key === 'k') {
 				e.preventDefault();
 				if (window.searchBar === undefined) {
