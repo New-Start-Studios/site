@@ -2,6 +2,7 @@
 	import Footer from '$lib/components/Footer/Footer.svelte';
 	import Nav from '$lib/components/Nav/Nav.svelte';
 	import Gtm from '$lib/components/Collection/GTM.svelte';
+	import { afterNavigate } from '$app/navigation';
 	import { browser } from "$app/environment";
 	import { config } from '$lib/config';
 	import '../app.css';
@@ -9,14 +10,21 @@
 	import { onMount } from 'svelte';
 	import { page } from '$app/stores';
 
+	afterNavigate(() => {
+		if (browser) {
+			let tabName = localStorage.getItem('tabName');
+			let tabIcon = localStorage.getItem('tabIcon');
+
+			if (tabName) document.getElementsByTagName('title')[0].innerText = tabName;
+			if (tabIcon) (document.getElementById('favicon') as HTMLLinkElement).href = tabIcon;
+
+			console.log(document.getElementsByTagName('title')[0].innerText)
+		}
+	});
+
 	// if control  + k is pressed, focus the search bar and ensure the browser doesn't do anything
 	onMount(() => {
 		customMessage();
-		let tabName = localStorage.getItem('tabName');
-		let tabIcon = localStorage.getItem('tabIcon');
-
-		if (tabName) document.getElementsByTagName('title')[0].innerText = tabName;
-		if (tabIcon) (document.getElementById('favicon') as HTMLLinkElement).href = tabIcon;
 
 		window.addEventListener('keydown', (e) => {
 			if (browser) {

@@ -1,12 +1,13 @@
 <script lang="ts">
+	import { config } from '$lib/config';
 	import type { PageData } from './$types';
 	export let data: PageData;
 </script>
 
 <svelte:head>
-	<title>Kazwire - {data.game.name}</title>
-	<meta name="description" content="Play {data.game.name} for free now on Kazwire!" />
-	<meta property="og:description" content="Play {data.game.name} for free now on Kazwire!" />
+	<title>{config.branding.name} - {data.game.name}</title>
+	<meta name="description" content="Play {data.game.name} for free now on {config.branding.name}!" />
+	<meta property="og:description" content="Play {data.game.name} for free now on {config.branding.name}!" />
 	<script src="/cdn/game/ruffle/ruffle/ruffle.js"></script>
 </svelte:head>
 
