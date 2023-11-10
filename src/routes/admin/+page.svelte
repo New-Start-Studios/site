@@ -10,7 +10,7 @@
 		<h2>Users:</h2>
 	</a>
 	<code>
-		<pre>{JSON.stringify(data.users, null, 2)}</pre>
+		<pre class="max-h-[50rem]">{JSON.stringify(data.users, null, 2)}</pre>
 	</code>
 
 	<h2>Config:</h2>
