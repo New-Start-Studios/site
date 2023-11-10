@@ -10,6 +10,7 @@
 	let contentTitle: string = 'Nothing yet...';
 
 	import { config } from '$lib/config';
+	import Vert from '$lib/components/Google/Vert.svelte';
 
 	function search(input: string) {
 		let template: string = 'https://www.google.com/search?q=%s&hl=en';
@@ -224,5 +225,6 @@
 				</div>
 			</div>
 		</div>
+		<Vert />
 	</div>
 </div>

@@ -143,6 +143,7 @@
 	import Icon from '@iconify/svelte';
 	import { browser } from '$app/environment';
 	import { page } from '$app/stores';
+	import Vert from '$lib/components/Google/Vert.svelte';
 
 	let innerWidth: number = 0;
 
@@ -306,6 +307,7 @@
 				</div>
 			</div>
 		</div>
+		<Vert />
 	</div>
 </div>
 
