@@ -2,16 +2,7 @@
 	import { config } from '$lib/config';
 	import Icon from '@iconify/svelte';
 
-	import { onMount } from 'svelte';
-	import { themeChange } from 'theme-change';
-
 	let searchQuery: string = '';
-
-	// NOTE: the element that is using one of the theme attributes must be in the DOM on mount
-	onMount(() => {
-		themeChange(false);
-		// 👆 false parameter is required for svelte
-	});
 
 	let width: number = 0;
 </script>
@@ -80,10 +71,9 @@
 				</li>
 			{/if}
 			<li class="place-content-center">
-				<select class="select w-full min-w-[6rem] max-w-xs" data-choose-theme>
-					<option value="light" class="bg-base-100">Light</option>
-					<option value="dark" class="bg-base-100">Dark</option>
-				</select>
+				<a class="tooltip tooltip-bottom" data-tip="Settings" href="/settings">
+					<Icon icon="ri:settings-5-fill" class="text-2xl" />
+				</a>
 			</li>
 		</ul>
 	</div>

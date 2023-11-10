@@ -5,6 +5,7 @@
 	export let data: PageData;
 	
 	import { onMount } from 'svelte';
+	import { config } from '$lib/config';
 
 	onMount(async () => {
 		// Get the game
@@ -35,9 +36,9 @@
 
 {#if data.game.emulatorType == 'emulatorjs'}
 	<head>
-		<title>Kazwire - {data.game.name}</title>
-		<meta name="description" content="Play {data.game.name} for free now on Kazwire!" />
-		<meta property="og:description" content="Play {data.game.name} for free now on Kazwire!" />
+		<title>{config.branding.name} - {data.game.name}</title>
+		<meta name="description" content="Play {data.game.name} for free now on {config.branding.name}!" />
+		<meta property="og:description" content="Play {data.game.name} for free now on {config.branding.name}!" />
 	</head>
 
 	<div class="min-w-screen flex min-h-screen items-center justify-center text-center">
