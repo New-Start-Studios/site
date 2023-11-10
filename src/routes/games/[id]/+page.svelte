@@ -333,7 +333,9 @@
 				</div>
 			</div>
 		</div>
-		<Vert />
+		{#if innerWidth > 1224}
+			<Vert />
+		{/if}
 	</div>
 </div>
 
