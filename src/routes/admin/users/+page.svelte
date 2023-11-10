@@ -6,10 +6,14 @@
 
 	let users = data.users;
 
-	let search = '';
+	let searchEmail = '';
+	let searchDisplayName = '';
 
 	$: filteredUsers = users.filter((user: User) => {
-		return user.email.toLowerCase().includes(search.toLowerCase());
+		return (
+			user.email.toLowerCase().includes(searchEmail.toLowerCase()) &&
+			user.display_name.toLowerCase().includes(searchDisplayName.toLowerCase())
+		);
 	});
 
 	function deleteUser(id: string) {
@@ -52,14 +56,27 @@
 	type="text"
 	placeholder="Search by email"
 	class="input input-bordered mb-6"
-	bind:value={search}
+	bind:value={searchEmail}
 />
+<input
+	type="text"
+	placeholder="Search by display name"
+	class="input input-bordered mb-6"
+	bind:value={searchDisplayName}
+/>
+
 <!-- Page numbers selector -->
 <div class="join">
-	<button class="join-item btn" on:click={() => window.location.href = '/admin/users?page=' + (data.pageNumber - 1)}>«</button>
-	<button class="join-item btn">Page {data.pageNumber}</button>
-	<button class="join-item btn" on:click={() => window.location.href = '/admin/users?page=' + (data.pageNumber + 1)}>»</button>
-  </div>
+	<button
+		class="btn join-item"
+		on:click={() => (window.location.href = '/admin/users?page=' + (data.pageNumber - 1))}>«</button
+	>
+	<button class="btn join-item">Page {data.pageNumber}</button>
+	<button
+		class="btn join-item"
+		on:click={() => (window.location.href = '/admin/users?page=' + (data.pageNumber + 1))}>»</button
+	>
+</div>
 
 {#each filteredUsers as user}
 	<div class="card">
