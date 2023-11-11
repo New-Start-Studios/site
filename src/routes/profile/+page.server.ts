@@ -4,8 +4,6 @@ import { auth } from "$lib/server/lucia";
 
 import type { Actions, PageServerLoad } from "./$types";
 
-import { suggestionAlgorithm } from "$lib/server/suggestionAlgorithm";
-
 export const load: PageServerLoad = async ({ locals }) => {
 	const session = await locals.auth.validate();
 	if (!session) throw redirect(302, "/login");
@@ -15,7 +13,6 @@ export const load: PageServerLoad = async ({ locals }) => {
 		display_name: session.user.display_name,
 		email_verified: session.user.email_verified,
 		role: session.user.role,
-		suggested_games: await suggestionAlgorithm(session.user.loved_games, session.user.played_games),
 	};
 };
 

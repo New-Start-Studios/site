@@ -40,7 +40,7 @@
 	</div>
 </div>
 
-{#if data.suggested_games !== undefined && data.suggested_games.length > 0}
+{#if $page.data.suggested_games !== undefined && $page.data.suggested_games.length > 0}
 	<div class="mt-4 flex flex-col gap-4">
 		<!-- Display the apps -->
 		<!-- limit the width to the max size of the container -->
@@ -57,7 +57,7 @@
 				</a>
 			</h1>
 			<Carousel SCROLL_AMOUNT={640}>
-				{#each data.suggested_games as game}
+				{#each $page.data.suggested_games as game}
 					<!-- if the app.id is in the loved apps show it -->
 					<DefaultBox
 						name={game.name}

@@ -3,6 +3,10 @@ import type { User, Game } from "@prisma/client";
 import prisma from '$lib/prisma';
 
 export async function suggestionAlgorithm(loved_games: string[], played_games: string[]) {
+    if (loved_games.length === 0 && played_games.length === 0) {
+        return [];
+    }
+
     let suggested_games: string[] = [];
 
     // Get only 100 random users
