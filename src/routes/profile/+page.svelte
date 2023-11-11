@@ -40,6 +40,37 @@
 	</div>
 </div>
 
+{#if data.suggested_games !== undefined && data.suggested_games.length > 0}
+	<div class="mt-4 flex flex-col gap-4">
+		<!-- Display the apps -->
+		<!-- limit the width to the max size of the container -->
+		<div class="max-w-[calc(100vw-6rem)]">
+			<h1 class="mb-1 flex text-2xl font-bold capitalize">
+				Suggested Games
+				<Icon icon="material-symbols:recommend" class="my-auto ml-2 text-xl text-green-500" />
+				<!-- center the text vertically -->
+				<a
+					href="/profile"
+					class="my-auto ml-2 rounded-full bg-accent px-2 py-1 text-sm text-accent-content transition-colors hover:bg-accent-focus"
+				>
+					View more
+				</a>
+			</h1>
+			<Carousel SCROLL_AMOUNT={640}>
+				{#each data.suggested_games as game}
+					<!-- if the app.id is in the loved apps show it -->
+					<DefaultBox
+						name={game.name}
+						image={'/cdn/game/img/' + game.image}
+						developer={game.developer}
+						link={'/games/' + game.id}
+					/>
+				{/each}
+			</Carousel>
+		</div>
+	</div>
+{/if}
+
 {#if $page.data.loved_games !== undefined && $page.data.loved_games.length > 0}
 	<div class="mt-4 flex flex-col gap-4">
 		<!-- Display the apps -->
