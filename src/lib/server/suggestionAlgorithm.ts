@@ -9,7 +9,10 @@ export async function suggestionAlgorithm(loved_games: string[], played_games: s
     const users = await prisma.user.findMany();
 
     // Find the 5 most similar users
-    let similarity = 0;
+    let similarity = [{
+        user_id: "",
+        similarity: 0
+    }]
     let most_similar_users: User[] = [];
     for (let i = 0; i < users.length; i++) {
         let user = users[i];
@@ -29,10 +32,24 @@ export async function suggestionAlgorithm(loved_games: string[], played_games: s
             }
         }
 
-        if (user_similarity > similarity) {
-            similarity = user_similarity;
-            most_similar_users = [user];
-        } else if (user_similarity == similarity) {
+        // Add to similarity list
+        similarity.push({
+            user_id: user.id,
+            similarity: user_similarity
+        });
+    }
+
+    // Sort the similarity list
+    similarity.sort((a, b) => b.similarity - a.similarity);
+
+    // Get the 5 most similar users
+    for (let i = 0; i < 5; i++) {
+        let user = await prisma.user.findUnique({
+            where: {
+                id: similarity[i].user_id
+            }
+        });
+        if (user) {
             most_similar_users.push(user);
         }
     }
