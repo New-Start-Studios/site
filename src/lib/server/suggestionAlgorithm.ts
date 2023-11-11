@@ -47,6 +47,17 @@ export async function suggestionAlgorithm(loved_games: string[], played_games: s
     // Remove duplicates
     suggested_games = [...new Set(suggested_games)];
 
+    // Remove games the user already loves or has played
+    suggested_games = suggested_games.filter(game => !loved_games.includes(game));
+
+    // Randomize the order
+    suggested_games.sort(() => Math.random() - 0.5);
+
+    // Remove games until there are only 10 left
+    while (suggested_games.length > 10) {
+        suggested_games.pop();
+    }
+
     // Return a list of games
     // Convert the ids to Games
     let suggested_games_objects: Game[] = [];
