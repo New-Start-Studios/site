@@ -37,6 +37,13 @@ export async function suggestionAlgorithm(loved_games: string[], played_games: s
         }
     }
 
+    // Get games from the most similar users
+    for (let i = 0; i < most_similar_users.length; i++) {
+        let user = most_similar_users[i];
+        suggested_games.push(...user.loved_games);
+        suggested_games.push(...user.played_games);
+    }
+
     // Remove duplicates
     suggested_games = [...new Set(suggested_games)];
 
