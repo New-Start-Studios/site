@@ -1,4 +1,4 @@
-<ascript lang="ts">
+<script lang="ts">
 	import { config } from '$lib/config';
 
 	import { page } from '$app/stores';
@@ -104,14 +104,14 @@
 		</div>
 	{/if}
 
-	{#if $page.data.suggested_games.length > 0}
-		<div class="flex flex-col gap-4">
+	{#if $page.data.suggested_games !== undefined && $page.data.suggested_games.length > 0}
+		<div class="flex flex-col mb-10 gap-4">
 			<!-- Display the apps -->
 			<!-- limit the width to the max size of the container -->
 			<div class="max-w-[calc(100vw-6rem)]">
 				<h1 class="mb-1 flex text-2xl font-bold capitalize">
 					Suggested Games
-					<Icon icon="mdi:heart" class="text-xl text-red-500 my-auto ml-2" />
+					<Icon icon="material-symbols:recommend" class="my-auto ml-2 text-xl text-green-500" />
 					<!-- center the text vertically -->
 					<a
 						href="/profile"
@@ -122,6 +122,7 @@
 				</h1>
 				<Carousel SCROLL_AMOUNT={640}>
 					{#each $page.data.suggested_games as game}
+						<!-- if the app.id is in the loved apps show it -->
 						<DefaultBox
 							name={game.name}
 							image={'/cdn/game/img/' + game.image}
