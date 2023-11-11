@@ -5,14 +5,23 @@ import prisma from '$lib/prisma';
 export async function suggestionAlgorithm(loved_games: string[], played_games: string[]) {
     let suggested_games: string[] = [];
 
-    // Get all users
-    const users = await prisma.user.findMany();
+    // Get only 100 random users
+    const skip = Math.floor(Math.random() * await prisma.user.count());
+    const users = await prisma.user.findMany({
+        skip: skip,
+        take: 100,
+        orderBy: {
+            id: "asc"
+        }
+    });
+
 
     // Find the 5 most similar users
     let similarity = [{
         user_id: "",
         similarity: 0
     }]
+
     let most_similar_users: User[] = [];
     for (let i = 0; i < users.length; i++) {
         let user = users[i];
