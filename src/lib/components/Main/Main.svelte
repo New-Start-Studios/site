@@ -162,6 +162,15 @@
 								image={'/cdn/game/img/' + game.image}
 								developer={game.developer}
 								link={'/games/' + game.id}
+								analyticsSendEvent={{
+									type: 'event',
+									event: 'click',
+									data: {
+										"event_category": tag,
+										"event_label": game.name,
+										"value": game.id
+									}
+								}}
 							/>
 						{/if}
 					{/each}

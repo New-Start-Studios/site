@@ -10,6 +10,9 @@
 	import { onMount } from 'svelte';
 	import { page } from '$app/stores';
 
+	import SearchBar from '$lib/components/SearchBar.svelte';
+	import { fade } from 'svelte/transition';
+
 	afterNavigate(() => {
 		if (browser) {
 			let tabName = localStorage.getItem('tabName');
@@ -57,9 +60,6 @@
 			resetLayout = true;
 		}
 	}
-
-	import SearchBar from '$lib/components/SearchBar.svelte';
-	import { fade } from 'svelte/transition';
 </script>
 
 <svelte:head>

@@ -5,6 +5,12 @@
 	export let developer: string;
 	export let image: string;
 	export let link: string;
+
+	export let analyticsSendEvent: {
+		data: any;
+		event: string;
+		type: string;
+	} | null = null;
 </script>
 
 <!-- Why have both box-rounded and box-boxy classes? -->
@@ -12,9 +18,20 @@
 <!-- To ensure that it renders correctly we will include every variation inside of it and then the class at the end of it will take precedence. -->
 <!-- We only need to have this appear one time throughout the rendered page, but to ensure that it works across all pages it must be placed throughout the codebase. -->
 <a
-	class="block h-40 w-[18rem] transition-all duration-150 hover:shadow-lg hover:shadow-accent hover:scale-95"
+	class="block text-left h-40 w-[18rem] transition-all duration-150 hover:scale-95 hover:shadow-lg hover:shadow-accent hover:cursor-pointer"
 	class:box-rounded={config.styling.contentBoxStyleType === 'rounded'}
 	href={link}
+	on:click={() => {
+		if (analyticsSendEvent === null) return;
+
+		let analytics = localStorage.getItem('analyticsStore');
+		localStorage.setItem(
+			'analyticsStore',
+			analytics === null
+				? JSON.stringify([analyticsSendEvent])
+				: JSON.stringify([...JSON.parse(analytics), analyticsSendEvent])
+		);
+	}}
 	data-sveltekit-reload
 >
 	<div

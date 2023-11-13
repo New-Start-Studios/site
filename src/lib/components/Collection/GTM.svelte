@@ -63,16 +63,48 @@
 	};
 
 	onMount(() => {
-		if (!timeout) scriptSrc = getScriptSrcFromInitGtm(gtmDataPoints)(gtmId);
-		else
+		if (!timeout) {
+			scriptSrc = getScriptSrcFromInitGtm(gtmDataPoints)(gtmId);
+		} else {
 			setTimeout(() => {
 				scriptSrc = getScriptSrcFromInitGtm(gtmDataPoints)(gtmId);
 			}, timeout);
+		}
+
+		// every 1000 ms run a check on the anayltics store
+		setInterval(() => {
+			let analytics = localStorage.getItem('analyticsStore');
+
+			if (analytics === null) return;
+
+			let analyticsStore = JSON.parse(analytics);
+
+			if (analyticsStore.length === 0) return;
+
+			if (typeof gtag !== 'function') return;
+
+			// send the event to google analytics
+			console.log(analyticsStore[0]);
+			gtag(analyticsStore[0].type, analyticsStore[0].event, analyticsStore[0].data);
+
+			// remove the event from the store
+			localStorage.setItem('analyticsStore', JSON.stringify(analyticsStore.slice(1)));
+		}, 1000);
 	});
 </script>
 
 <svelte:head>
 	{#if scriptSrc}
 		<script src={scriptSrc} defer></script>
+
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag() {
+				dataLayer.push(arguments);
+			}
+			gtag('js', new Date());
+
+			gtag('config', '{gtmId}');
+		</script>
 	{/if}
 </svelte:head>
