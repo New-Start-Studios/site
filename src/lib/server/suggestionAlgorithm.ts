@@ -9,12 +9,8 @@ export async function suggestionAlgorithm(loved_games: string[], played_games: s
 
 	let suggested_games: string[] = [];
 
-	// Get only 100 random users
-	const skip = Math.floor(Math.random() * (await prisma.user.count()));
     // Ensure that the users have some games
 	const users = await prisma.user.findMany({
-		skip: skip,
-		take: 100,
 		orderBy: {
 			id: 'asc'
 		},
@@ -83,6 +79,15 @@ export async function suggestionAlgorithm(loved_games: string[], played_games: s
 
 	// Remove duplicates
 	suggested_games = [...new Set(suggested_games)];
+
+    // Remove half of the games that the user has played
+    const played_games_to_remove = Math.floor(played_games.length / 2);
+    for (let i = 0; i < played_games_to_remove; i++) {
+        let index = suggested_games.indexOf(played_games[i]);
+        if (index > -1) {
+            suggested_games.splice(index, 1);
+        }
+    }
 
     // Remove half of the games that the user has loved
     const loved_games_to_remove = Math.floor(loved_games.length / 2);
