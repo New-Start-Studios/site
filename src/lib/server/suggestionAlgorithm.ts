@@ -9,17 +9,24 @@ export async function suggestionAlgorithm(loved_games: string[], played_games: s
 
 	let suggested_games: string[] = [];
 
-    // Ensure that the users have some games
-	const users = await prisma.user.findMany({
-		orderBy: {
-			id: 'asc'
-		},
-        where: {
-            played_games: {
-                isEmpty: false,
-            }
-        }
-	});
+    let users: User[] = [];
+
+	// Ensure that the users have some games
+	try {
+		users = await prisma.user.findMany({
+			orderBy: {
+				id: 'asc'
+			},
+			where: {
+				played_games: {
+					isEmpty: false
+				}
+			}
+		});
+	} catch (error) {
+        users = [];
+		console.log(error);
+	}
 
 	// Find the 5 most similar users
 	let similarity = [
@@ -58,17 +65,22 @@ export async function suggestionAlgorithm(loved_games: string[], played_games: s
 	// Sort the similarity list
 	similarity.sort((a, b) => b.similarity - a.similarity);
 
-	// Get the 5 most similar users
-	for (let i = 0; i < 5; i++) {
-		let user = await prisma.user.findUnique({
-			where: {
-				id: similarity[i].user_id
-			}
-		});
-		if (user) {
-			most_similar_users.push(user);
-		}
-	}
+	// Get the most similar users
+    try {
+        for (let i = 0; i < 5; i++) {
+            let user = await prisma.user.findUnique({
+                where: {
+                    id: similarity[i].user_id
+                }
+            });
+            if (user) {
+                most_similar_users.push(user);
+            }
+        }
+    } catch (error) {
+        most_similar_users = [];
+        console.log(error);
+    }
 
 	// Get games from the most similar users
 	for (let i = 0; i < most_similar_users.length; i++) {
@@ -79,24 +91,6 @@ export async function suggestionAlgorithm(loved_games: string[], played_games: s
 
 	// Remove duplicates
 	suggested_games = [...new Set(suggested_games)];
-
-    // Remove half of the games that the user has played
-    const played_games_to_remove = Math.floor(played_games.length / 2);
-    for (let i = 0; i < played_games_to_remove; i++) {
-        let index = suggested_games.indexOf(played_games[i]);
-        if (index > -1) {
-            suggested_games.splice(index, 1);
-        }
-    }
-
-    // Remove half of the games that the user has loved
-    const loved_games_to_remove = Math.floor(loved_games.length / 2);
-    for (let i = 0; i < loved_games_to_remove; i++) {
-        let index = suggested_games.indexOf(loved_games[i]);
-        if (index > -1) {
-            suggested_games.splice(index, 1);
-        }
-    }
 
 	// Randomize the order
 	suggested_games.sort(() => Math.random() - 0.5);
