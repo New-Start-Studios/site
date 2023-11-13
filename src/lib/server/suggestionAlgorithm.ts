@@ -84,15 +84,6 @@ export async function suggestionAlgorithm(loved_games: string[], played_games: s
 	// Remove duplicates
 	suggested_games = [...new Set(suggested_games)];
 
-    // Remove half of the games that the user has played
-    const played_games_to_remove = Math.floor(played_games.length / 2);
-    for (let i = 0; i < played_games_to_remove; i++) {
-        let index = suggested_games.indexOf(played_games[i]);
-        if (index > -1) {
-            suggested_games.splice(index, 1);
-        }
-    }
-
     // Remove half of the games that the user has loved
     const loved_games_to_remove = Math.floor(loved_games.length / 2);
     for (let i = 0; i < loved_games_to_remove; i++) {
