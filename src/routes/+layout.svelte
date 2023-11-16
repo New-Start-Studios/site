@@ -20,8 +20,6 @@
 
 			if (tabName) document.getElementsByTagName('title')[0].innerText = tabName;
 			if (tabIcon) (document.getElementById('favicon') as HTMLLinkElement).href = tabIcon;
-
-			console.log(document.getElementsByTagName('title')[0].innerText)
 		}
 	});
 

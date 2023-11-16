@@ -32,7 +32,17 @@
 				tabCloakSelectEle.value = 'custom';
 				tabNameEle.value = tabName || '';
 				tabIconEle.value = tabIcon || '';
-				(document.getElementById('customTab') as HTMLSpanElement).style.display = '';
+
+				if (tabName == 'Google Classroom' ||
+					tabName == 'Google Docs' ||
+					tabName == 'Google' ||
+					tabName == 'Canvas' ||
+					tabName == 'Calculator' ||
+					tabName == 'Wikipedia') {
+					tabCloakSelectEle.value = tabName.toLowerCase().replaceAll(' ', '-');
+				} else {
+					(document.getElementById('customTab') as HTMLSpanElement).style.display = '';
+				}
 			}
 			else {
 				tabCloakSelectEle.value = 'none';
@@ -77,12 +87,49 @@
 	}
 
 	function tabCloakSelected(e: any) {
+		let customTab = document.getElementById('customTab') as HTMLSpanElement;
 		let selected = e.target.value;
 
 		if (selected == 'custom') {
-			(document.getElementById('customTab') as HTMLSpanElement).style.display = '';
+			(customTab as HTMLSpanElement).style.display = '';
+		} else if (selected == 'google-classroom') {
+			(customTab as HTMLSpanElement).style.display = 'none';
+
+			// ele at index 0 is name and ele at index 1 is icon
+			(customTab.children[0] as HTMLInputElement).value = 'Google Classroom';
+			(customTab.children[1] as HTMLInputElement).value = 'cdn/cloak/img/google-classroom.png';
+		} else if (selected == 'google-docs') {
+			(customTab as HTMLSpanElement).style.display = 'none';
+
+			// ele at index 0 is name and ele at index 1 is icon
+			(customTab.children[0] as HTMLInputElement).value = 'Google Docs';
+			(customTab.children[1] as HTMLInputElement).value = 'cdn/cloak/img/google-docs.png';
+		} else if (selected == 'google') {
+			(customTab as HTMLSpanElement).style.display = 'none';
+
+			// ele at index 0 is name and ele at index 1 is icon
+			(customTab.children[0] as HTMLInputElement).value = 'Google';
+			(customTab.children[1] as HTMLInputElement).value = 'cdn/cloak/img/google.png';
+		} else if (selected == 'canvas') {
+			(customTab as HTMLSpanElement).style.display = 'none';
+
+			// ele at index 0 is name and ele at index 1 is icon
+			(customTab.children[0] as HTMLInputElement).value = 'Dashboard';
+			(customTab.children[1] as HTMLInputElement).value = 'cdn/cloak/img/canvas.jpg';
+		} else if (selected == 'calculator') {
+			(customTab as HTMLSpanElement).style.display = 'none';
+
+			// ele at index 0 is name and ele at index 1 is icon
+			(customTab.children[0] as HTMLInputElement).value = 'Calculator';
+			(customTab.children[1] as HTMLInputElement).value = 'cdn/cloak/img/calculator.png';
+		} else if (selected == 'wikipedia') {
+			(customTab as HTMLSpanElement).style.display = 'none';
+
+			// ele at index 0 is name and ele at index 1 is icon
+			(customTab.children[0] as HTMLInputElement).value = 'Wikipedia';
+			(customTab.children[1] as HTMLInputElement).value = 'cdn/cloak/img/wikipedia.png';
 		} else {
-			(document.getElementById('customTab') as HTMLSpanElement).style.display = 'none';
+			(customTab as HTMLSpanElement).style.display = 'none';
 		}
 	}
 
@@ -149,6 +196,12 @@
 			<div class="card-actions justify-center mt-3">
 				<select id="tabCloakSelect" class="select min-w-[6rem] w-full" on:change={tabCloakSelected}>
 					<option value="none" class="bg-base-100" selected>None</option>
+					<option value="google-classroom" class="bg-base-100" selected>Google Classroom</option>
+					<option value="google-docs" class="bg-base-100" selected>Google Docs</option>
+					<option value="google" class="bg-base-100" selected>Google</option>
+					<option value="canvas" class="bg-base-100" selected>Canvas</option>
+					<option value="calculator" class="bg-base-100" selected>Calculator</option>
+					<option value="wikipedia" class="bg-base-100" selected>Wikipedia</option>
 					<option value="custom" class="bg-base-100">Custom</option>
 				</select>
 
