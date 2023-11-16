@@ -28,24 +28,21 @@
 			panicKeyEle.value = panicKey || '';
 			panicLinkEle.value = panicLink || '';
 
-			if (tabNameEle || tabIconEle) {
+			if (tabName == 'Google Classroom' ||
+				tabName == 'Google Docs' ||
+				tabName == 'Google' ||
+				tabName == 'Canvas' ||
+				tabName == 'Calculator' ||
+				tabName == 'Wikipedia') {
+				tabCloakSelectEle.value = tabName.toLowerCase().replaceAll(' ', '-');
+			} else if (!tabName && !tabIcon) {
+				tabCloakSelectEle.value = 'none';
+				(document.getElementById('customTab') as HTMLSpanElement).style.display = 'none';
+			} else {
+				(document.getElementById('customTab') as HTMLSpanElement).style.display = '';
 				tabCloakSelectEle.value = 'custom';
 				tabNameEle.value = tabName || '';
 				tabIconEle.value = tabIcon || '';
-
-				if (tabName == 'Google Classroom' ||
-					tabName == 'Google Docs' ||
-					tabName == 'Google' ||
-					tabName == 'Canvas' ||
-					tabName == 'Calculator' ||
-					tabName == 'Wikipedia') {
-					tabCloakSelectEle.value = tabName.toLowerCase().replaceAll(' ', '-');
-				} else {
-					(document.getElementById('customTab') as HTMLSpanElement).style.display = '';
-				}
-			}
-			else {
-				tabCloakSelectEle.value = 'none';
 			}
 		}
 	});
@@ -130,6 +127,9 @@
 			(customTab.children[1] as HTMLInputElement).value = 'cdn/cloak/img/wikipedia.png';
 		} else {
 			(customTab as HTMLSpanElement).style.display = 'none';
+
+			(customTab.children[0] as HTMLInputElement).value = '';
+			(customTab.children[1] as HTMLInputElement).value = '';
 		}
 	}
 
@@ -139,6 +139,12 @@
 
 		localStorage.setItem("tabName", tabName);
 		localStorage.setItem("tabIcon", tabIcon);
+
+		if (!tabName && !tabIcon)
+		{
+			localStorage.removeItem('tabName');
+			localStorage.removeItem('tabIcon');
+		}
 	}
 
 	let innerWidth: number = 0;
