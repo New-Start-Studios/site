@@ -3,6 +3,7 @@
 
 	import Hero from '$lib/components/Hero/Hero.svelte';
 	import Hero2 from '$lib/components/Hero/Hero2.svelte';
+	import Hero3 from '$lib/components/Hero/Hero3.svelte';
 	import Main from '$lib/components/Main/Main.svelte';
 	import Faq from '$lib/components/Faq/Faq.svelte';
 </script>
@@ -24,6 +25,9 @@
 	{/if}
 	{#if layout === 'hero2'}
 		<Hero2 />
+	{/if}
+	{#if layout === 'hero3'}
+		<Hero3 />
 	{/if}
 	{#if layout === 'faq'}
 		<Faq />
