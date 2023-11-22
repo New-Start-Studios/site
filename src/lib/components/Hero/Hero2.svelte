@@ -2,7 +2,7 @@
 	import { config } from '$lib/config';
 </script>
 
-<div class="hero mb-10 min-h-fit bg-base-100">
+<div class="hero mb-10 min-h-fit bg-base-100 font-heading">
 	<div class="hero-content flex-col gap-24 lg:flex-row">
 		<img
 			src="/logo.png"
