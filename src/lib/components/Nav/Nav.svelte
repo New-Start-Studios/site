@@ -11,7 +11,7 @@
 
 <div class="base-content navbar bg-base-300">
 	{#if width > 760}
-		<div class="flex-1">
+		<div class="flex-1 font-heading">
 			<a class="btn btn-ghost text-2xl normal-case" href="/">{config.branding.name}</a>
 		</div>
 	{:else}
