@@ -15,7 +15,13 @@
 		// 👆 false parameter is required for svelte
 
 		// check if theme is set in system preferences
-		theme = localStorage.getItem('theme') || window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light' || 'light';
+		if (localStorage.getItem('theme') != null) {
+			theme = localStorage.getItem('theme') || 'light';
+		} else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+			theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+		} else {
+			theme = 'light';
+		}
 
 		if (browser) {
 			let panicKey = localStorage.getItem('panicKey');
