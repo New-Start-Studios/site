@@ -16,19 +16,13 @@ export const actions: Actions = {
 		const password = formData.get('password');
 		// basic check
 		if (typeof email !== "string" || email.length < 1 || email.length > 255) {
-			return new Response("Invalid email", {
-				status: 400
-			});
+			return { status: 400, body: "Invalid email" };
 		}
-		if (
-			typeof password !== "string" ||
-			password.length < 1 ||
-			password.length > 255
-		) {
-			return new Response("Invalid password", {
-				status: 400
-			});
+		
+		if (typeof password !== "string" || password.length < 1 || password.length > 255) {
+			return { status: 400, body: "Invalid password" };
 		}
+
 		try {
 			// find user by key
 			// and validate password
