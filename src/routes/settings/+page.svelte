@@ -9,9 +9,13 @@
 	import { config } from '$lib/config';
 
 	// NOTE: the element that is using one of the theme attributes must be in the DOM on mount
+	let theme = '';
 	onMount(() => {
 		themeChange(false);
 		// 👆 false parameter is required for svelte
+
+		// check if theme is set in system preferences
+		theme = localStorage.getItem('theme') || window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light' || 'light';
 
 		if (browser) {
 			let panicKey = localStorage.getItem('panicKey');
@@ -166,8 +170,8 @@
 			
 			<div class="card-actions justify-center mt-3">
 				<select class="select min-w-[6rem] max-w-xs" data-choose-theme>
-					<option value="light" class="bg-base-100">Light</option>
-					<option value="dark" class="bg-base-10">Dark</option>
+					<option value="light" class="bg-base-100" selected={(theme == 'light')}>Light</option>
+					<option value="dark" class="bg-base-100" selected={(theme == 'dark')}>Dark</option>
 				</select>
 			</div>
 		</div>
