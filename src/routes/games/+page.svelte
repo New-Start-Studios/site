@@ -73,6 +73,7 @@
 	{#each data.games as game}
 		<DefaultBox
 			name={game.name}
+			id={'gamePage-' + game.id}
 			developer={game.developer}
 			image="/cdn/game/img/{game.image}"
 			link={'/games/' + game.id}

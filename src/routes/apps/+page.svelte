@@ -52,6 +52,7 @@
 		<DefaultBox
 			name={app.name}
 			developer={app.developer}
+			id={"appPage-" + app.id}
 			image="/cdn/app/img/{app.image}"
 			link={'/apps/' + app.id}
 		/>
