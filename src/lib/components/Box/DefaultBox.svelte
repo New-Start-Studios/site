@@ -5,12 +5,7 @@
 	export let developer: string;
 	export let image: string;
 	export let link: string;
-
-	export let analyticsSendEvent: {
-		data: any;
-		event: string;
-		type: string;
-	} | null = null;
+	export let id: string = '';
 </script>
 
 <!-- Why have both box-rounded and box-boxy classes? -->
@@ -21,17 +16,7 @@
 	class="block text-left h-40 w-[18rem] transition-all duration-150 hover:scale-95 hover:shadow-lg hover:shadow-accent hover:cursor-pointer"
 	class:box-rounded={config.styling.contentBoxStyleType === 'rounded'}
 	href={link}
-	on:click={() => {
-		if (analyticsSendEvent === null) return;
-
-		let analytics = localStorage.getItem('analyticsStore');
-		localStorage.setItem(
-			'analyticsStore',
-			analytics === null
-				? JSON.stringify([analyticsSendEvent])
-				: JSON.stringify([...JSON.parse(analytics), analyticsSendEvent])
-		);
-	}}
+	id={id}
 	data-sveltekit-reload
 >
 	<div

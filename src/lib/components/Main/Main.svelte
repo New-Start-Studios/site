@@ -32,6 +32,7 @@
 						{#if $page.data.loved_apps.includes(app.id)}
 							<DefaultBox
 								name={app.name}
+								id={'loved-' + app.id}
 								image={'/cdn/app/img/' + app.image}
 								developer={app.developer}
 								link={'/apps/' + app.id}
@@ -60,6 +61,7 @@
 				{#each $page.data.apps as app}
 					<DefaultBox
 						name={app.name}
+						id={'app-' + app.id}
 						image={'/cdn/app/img/' + app.image}
 						developer={app.developer}
 						link={'/apps/' + app.id}
@@ -93,6 +95,7 @@
 						{#if $page.data.loved_games.includes(game.id)}
 							<DefaultBox
 								name={game.name}
+								id={'loved-' + game.id}
 								image={'/cdn/game/img/' + game.image}
 								developer={game.developer}
 								link={'/games/' + game.id}
@@ -125,6 +128,7 @@
 						<!-- if the app.id is in the loved apps show it -->
 						<DefaultBox
 							name={game.name}
+							id={'suggested-' + game.id}
 							image={'/cdn/game/img/' + game.image}
 							developer={game.developer}
 							link={'/games/' + game.id}
@@ -159,18 +163,10 @@
 						{#if game.tags.includes(tag)}
 							<DefaultBox
 								name={game.name}
+								id={tag + "-" + game.id}
 								image={'/cdn/game/img/' + game.image}
 								developer={game.developer}
 								link={'/games/' + game.id}
-								analyticsSendEvent={{
-									type: 'event',
-									event: 'click',
-									data: {
-										"event_category": tag,
-										"event_label": game.name,
-										"value": game.id
-									}
-								}}
 							/>
 						{/if}
 					{/each}

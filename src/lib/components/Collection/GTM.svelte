@@ -35,9 +35,6 @@
 			event: 'gtm.js'
 		};
 
-		/** getScriptSrcForGtm - Returns script src.
-		 *  @param {string} gtmId - GTM ID 'GTM-F00BARS'.
-		 *  @returns {string} - Src for script element. */
 		const getScriptSrcForGtm = (gtmId: string) => {
 			if (!dev && (typeof gtmId !== 'string' || !gtmId.length)) {
 				return;
@@ -58,7 +55,7 @@
 		} catch (error) {
 			if (!dev) console.error('Google Tag Manager.', error);
 		} finally {
-			return getScriptSrcForGtm; // …no matter what, for no error.
+			return getScriptSrcForGtm; // no matter what, for no error.
 		}
 	};
 
@@ -70,26 +67,6 @@
 				scriptSrc = getScriptSrcFromInitGtm(gtmDataPoints)(gtmId);
 			}, timeout);
 		}
-
-		// every 1000 ms run a check on the anayltics store
-		setInterval(() => {
-			let analytics = localStorage.getItem('analyticsStore');
-
-			if (analytics === null) return;
-
-			let analyticsStore = JSON.parse(analytics);
-
-			if (analyticsStore.length === 0) return;
-
-			if (typeof gtag !== 'function') return;
-
-			// send the event to google analytics
-			console.log(analyticsStore[0]);
-			gtag(analyticsStore[0].type, analyticsStore[0].event, analyticsStore[0].data);
-
-			// remove the event from the store
-			localStorage.setItem('analyticsStore', JSON.stringify(analyticsStore.slice(1)));
-		}, 1000);
 	});
 </script>
 
