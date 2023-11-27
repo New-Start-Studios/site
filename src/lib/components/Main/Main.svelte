@@ -141,7 +141,7 @@
 				</Carousel>
 			</div>
 		</div>
-	{:else if innerWidth > 524}
+	{:else if innerWidth > 524 && $page.data.user !== null}
 		<div class="mb-10 flex flex-col gap-4">
 			<!-- Display the apps -->
 			<!-- limit the width to the max size of the container -->
