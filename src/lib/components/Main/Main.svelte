@@ -7,7 +7,11 @@
 	import DefaultBox from '../Box/DefaultBox.svelte';
 
 	import Icon from '@iconify/svelte';
+
+	let innerWidth: number = 0;
 </script>
+
+<svelte:window bind:innerWidth />
 
 <div class="justify-left mb-10 flex flex-col">
 	{#if $page.data.loved_apps !== undefined && $page.data.loved_apps.length > 0}
@@ -17,7 +21,7 @@
 			<div class="max-w-[calc(100vw-6rem)]">
 				<h1 class="mb-1 flex text-2xl font-bold capitalize">
 					Loved Apps
-					<Icon icon="mdi:heart" class="text-xl text-red-500 my-auto ml-2" />
+					<Icon icon="mdi:heart" class="my-auto ml-2 text-xl text-red-500" />
 					<!-- center the text vertically -->
 					<a
 						href="/profile"
@@ -80,7 +84,7 @@
 			<div class="max-w-[calc(100vw-6rem)]">
 				<h1 class="mb-1 flex text-2xl font-bold capitalize">
 					Loved Games
-					<Icon icon="mdi:heart" class="text-xl text-red-500 my-auto ml-2" />
+					<Icon icon="mdi:heart" class="my-auto ml-2 text-xl text-red-500" />
 					<!-- center the text vertically -->
 					<a
 						href="/profile"
@@ -108,7 +112,7 @@
 	{/if}
 
 	{#if $page.data.suggested_games !== undefined && $page.data.suggested_games.length > 0}
-		<div class="flex flex-col mb-10 gap-4">
+		<div class="mb-10 flex flex-col gap-4">
 			<!-- Display the apps -->
 			<!-- limit the width to the max size of the container -->
 			<div class="max-w-[calc(100vw-6rem)]">
@@ -137,8 +141,58 @@
 				</Carousel>
 			</div>
 		</div>
+	{:else if innerWidth > 524}
+		<div class="mb-10 flex flex-col gap-4">
+			<!-- Display the apps -->
+			<!-- limit the width to the max size of the container -->
+			<div class="max-w-[calc(100vw-6rem)]">
+				<h1 class="mb-1 flex text-2xl font-bold capitalize">
+					Suggested Games
+					<Icon icon="material-symbols:recommend" class="my-auto ml-2 text-xl text-green-500" />
+					<!-- center the text vertically -->
+					<a
+						href="/signup"
+						class="my-auto ml-2 rounded-full bg-accent px-2 py-1 text-sm text-accent-content transition-colors hover:bg-accent-focus"
+					>
+						View more
+					</a>
+				</h1>
+
+				<div class="relative">
+					<!-- Element on top telling the user to sign up to see suggested games -->
+					<div class="absolute top-0 left-0 w-full h-full flex justify-center items-center z-[1000]">
+						<div class="bg-accent bg-opacity-50 rounded-lg p-4 max-w-md">
+							<h1 class="text-2xl font-bold mb-1">Sign up to see suggested games</h1>
+							<p class="text-sm mb-2">
+								Sign up to see games that we think you will like based on your favorite games and previously played games.
+							</p>
+							<a
+								href="/signup"
+								class="btn btn-primary btn-sm"
+							>
+								Sign up
+							</a>
+						</div>
+					</div>
+					<div class="pointer-events-none overflow-hidden blur-lg">
+						<Carousel SCROLL_AMOUNT={640}>
+							{#each $page.data.games.sort(() => Math.random() - 0.5).slice(0, 10) as game}
+								<!-- if the app.id is in the loved apps show it -->
+								<DefaultBox
+									name={game.name}
+									id={'suggested-' + game.id}
+									image={'/cdn/game/img/' + game.image}
+									developer={game.developer}
+									link={'/games/' + game.id}
+								/>
+							{/each}
+						</Carousel>
+					</div>
+				</div>
+			</div>
+		</div>
 	{/if}
-	
+
 	<div class="flex flex-col gap-4">
 		<!-- Display the games -->
 		{#each $page.data.gameTags as tag}
@@ -163,7 +217,7 @@
 						{#if game.tags.includes(tag)}
 							<DefaultBox
 								name={game.name}
-								id={tag + "-" + game.id}
+								id={tag + '-' + game.id}
 								image={'/cdn/game/img/' + game.image}
 								developer={game.developer}
 								link={'/games/' + game.id}
