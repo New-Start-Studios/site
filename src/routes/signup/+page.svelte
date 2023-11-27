@@ -42,7 +42,23 @@
 			class="input input-primary w-full max-w-xs"
 		/><br />
 	</div>
-	<input type="submit" class="btn btn-primary" />
+
+	<!-- Legal -->
+	<p class="text-sm text-gray-500 mb-4 max-w-[30rem]">
+		By signing up, you agree to our{" "}
+		<a href="/legal/privacy-policy" class="text-blue-500">
+			Privacy Policy
+		</a>
+		and
+		<a href="/legal/terms-of-service" class="text-blue-500">
+			Terms of Service
+		</a>
+		and that you are at least 13 years old.
+	</p>
+	<button type="submit" class="btn btn-primary">
+		Sign up
+	</button>
+
 </form>
 <div class="form-control w-full max-w-[14rem] mt-4">
 	<label class="label">
