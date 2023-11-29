@@ -5,6 +5,8 @@ interface Opts {
     request: Request;
 }
 
+import { LuciaError } from "lucia";
+import { auth } from "$lib/server/lucia";
 
 export const prerender = false;
 
@@ -65,43 +67,25 @@ export async function GET({ url }: Opts): Promise<Response> {
 // Update the user given in the request body
 // method PUT
 export async function POST({ url, request }: Opts): Promise<Response> {
-    const userIdQuery = url.searchParams.get("id");
-    if (!userIdQuery) {
-        return new Response("User not found");
-    }
-
-    const user = await prisma.user.findUnique({
-        where: {
-            id: userIdQuery
-        }
-    });
-
-    if (!user) {
-        return new Response("User not found");
-    }
+    const userIdQuery = url.searchParams.get("id") || "";
 
     const body = await request.json();
     const { display_name, role, email } = body;
 
-    if (email) { 
-        user.email = email;
+    try {
+        const user = await auth.updateUserAttributes(
+            userIdQuery,
+            {
+                display_name: display_name,
+                role: role,
+                email: email
+            }
+        );
+    } catch (e) {
+        if (e instanceof LuciaError && e.message === `AUTH_INVALID_USER_ID`) {
+            return new Response("User not found");
+        }
     }
-
-    if (display_name) {
-        user.display_name = display_name;
-    }
-
-    if (role) {
-        user.role = role;
-    }
-
-    await prisma.user.update({
-        where: {
-            id: userIdQuery
-        },
-        data: user
-    });
-
 
     return new Response("User updated");
 }

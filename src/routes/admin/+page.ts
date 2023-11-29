@@ -6,11 +6,13 @@ export const prerender = false;
 
 
 export const load = (async ({ fetch }) => {
-	const res = await fetch('/api/admin/user');
+	const resUser = await fetch('/api/admin/user');
+	const resUserCount = await fetch('/api/admin/user/count');
 
-	if (res.ok) {
+	if (resUser.ok && resUserCount.ok) {
 		return {
-			users: await res.json(),
+			users: await resUser.json(),
+			userCount: await resUserCount.json(),
             config: config
 		};
 	}

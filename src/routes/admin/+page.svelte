@@ -6,9 +6,18 @@
 <article class="prose lg:prose-lg">
 	<h1>Admin Page</h1>
 	<p>This is an admin page.</p>
+
 	<a href="/admin/users">
 		<h2>Users:</h2>
 	</a>
+
+	<div class="stats shadow">
+		<div class="stat">
+			<div class="stat-title">Total Users</div>
+			<div class="stat-value">{data.userCount}</div>
+		</div>
+	</div>
+
 	<code>
 		<pre class="max-h-[50rem]">{JSON.stringify(data.users, null, 2)}</pre>
 	</code>
