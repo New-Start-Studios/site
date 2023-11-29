@@ -21,5 +21,5 @@ export async function GET(): Promise<Response> {
 		totalViews += game.views;
 	}
 
-	return new Response(JSON.stringify({totalViews}))
+	return new Response(JSON.stringify(totalViews))
 };
