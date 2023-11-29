@@ -26,9 +26,18 @@
 	<code>
 		<pre>{JSON.stringify(data.config, null, 2)}</pre>
 	</code>
+
 	<a href="/admin/games">
 		<h2>Game Data:</h2>
 	</a>
+
+	<div class="stats shadow">
+		<div class="stat">
+			<div class="stat-title">Total Game View Count</div>
+			<div class="stat-value">{data.gameViewCount}</div>
+		</div>
+	</div>
+
 	<code>
 		<pre class="max-h-[50rem]">{JSON.stringify(data.games, null, 2)}</pre>
 	</code>
@@ -36,6 +45,14 @@
 	<a href="/admin/apps">
 		<h2>App Data:</h2>
 	</a>
+
+	<div class="stats shadow">
+		<div class="stat">
+			<div class="stat-title">Total App View Count</div>
+			<div class="stat-value">{data.appViewCount}</div>
+		</div>
+	</div>
+
 	<code>
 		<pre class="max-h-[50rem]">{JSON.stringify(data.apps, null, 2)}</pre>
 	</code>
