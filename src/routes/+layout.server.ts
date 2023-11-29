@@ -11,6 +11,7 @@ export const load = (async ({locals}) => {
 
     if (user) {
         return {
+            user: user,
             loved_games: user.loved_games,
             played_games: user.played_games,
             loved_apps: user.loved_apps,
@@ -20,9 +21,11 @@ export const load = (async ({locals}) => {
     }
 
     return {
+        user: null,
         loved_games: [],
         played_games: [],
         loved_apps: [],
-        played_apps: []
+        played_apps: [],
+        suggested_games: []
     };
 }) satisfies LayoutServerLoad;
