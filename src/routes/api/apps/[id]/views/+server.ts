@@ -53,7 +53,7 @@ export async function POST({ url, locals }: Opts): Promise<Response> {
 			auth.updateUserAttributes(session.user.userId, {
 				played_apps: user.played_apps
 			});
-		} 
+		}
 
 		return new Response('ok');
 	} else {

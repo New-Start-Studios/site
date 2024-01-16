@@ -181,10 +181,7 @@
 <svelte:head>
 	<title>{config.branding.name} - {data.app.name}</title>
 	<meta property="og:title" content="{config.branding.name} - {data.app.name}" />
-	<meta
-		name="description"
-		content="Play {data.app.name} for free now on {config.branding.name}!"
-	/>
+	<meta name="description" content="Play {data.app.name} for free now on {config.branding.name}!" />
 	<meta
 		property="og:description"
 		content="Play {data.app.name} for free now on {config.branding.name}!"

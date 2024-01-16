@@ -5,14 +5,14 @@ declare global {
 		// interface Error {}
 		// interface Locals {}
 		interface Locals {
-			auth: import("lucia").AuthRequest;
+			auth: import('lucia').AuthRequest;
 		}
 		// interface PageData {}
 		// interface Platform {}
 	}
 
 	namespace Lucia {
-		type Auth = import("$lib/server/lucia").Auth;
+		type Auth = import('$lib/server/lucia').Auth;
 		type DatabaseUserAttributes = {
 			email: string;
 			email_verified: boolean;

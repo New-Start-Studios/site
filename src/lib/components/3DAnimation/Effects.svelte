@@ -34,9 +34,7 @@
 				})
 			)
 		);
-		composer.addPass(
-			new EffectPass(camera, new NoiseEffect({ premultiply: true }))
-		);
+		composer.addPass(new EffectPass(camera, new NoiseEffect({ premultiply: true })));
 		composer.addPass(
 			new EffectPass(
 				camera,

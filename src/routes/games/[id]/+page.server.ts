@@ -56,23 +56,23 @@ export const actions: Actions = {
 			// Add the game to the user's loved games
 			user.loved_games.push(game_id);
 
-            if (game) {
-                await prisma.game.update({
-                    where: {
-                        id: game_id
-                    },
-                    data: {
-                        loves: game.loves + 1
-                    }
-                });
-            }
+			if (game) {
+				await prisma.game.update({
+					where: {
+						id: game_id
+					},
+					data: {
+						loves: game.loves + 1
+					}
+				});
+			}
 		}
 
 		// Update the user
 		// remove the userId from the user object
 		await auth.updateUserAttributes(session.user.userId, {
-            loved_games: user.loved_games
-        });
+			loved_games: user.loved_games
+		});
 
 		return {
 			loved_games: user.loved_games,

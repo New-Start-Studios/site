@@ -27,7 +27,7 @@ export async function GET({ url }: Opts): Promise<Response> {
 		return new Response(JSON.stringify(games), {
 			headers: {
 				'Content-Type': 'application/json',
-        'Cache-Control': 'max-age=3600'
+				'Cache-Control': 'max-age=3600'
 			}
 		});
 	} else if (tag) {
@@ -44,7 +44,7 @@ export async function GET({ url }: Opts): Promise<Response> {
 		return new Response(JSON.stringify(games), {
 			headers: {
 				'Content-Type': 'application/json',
-        'Cache-Control': 'max-age=3600'
+				'Cache-Control': 'max-age=3600'
 			}
 		});
 	} else if (search) {
@@ -62,7 +62,7 @@ export async function GET({ url }: Opts): Promise<Response> {
 		return new Response(JSON.stringify(games), {
 			headers: {
 				'Content-Type': 'application/json',
-        'Cache-Control': 'max-age=3600'
+				'Cache-Control': 'max-age=3600'
 			}
 		});
 	} else {
@@ -74,7 +74,7 @@ export async function GET({ url }: Opts): Promise<Response> {
 		return new Response(JSON.stringify(games), {
 			headers: {
 				'Content-Type': 'application/json',
-        'Cache-Control': 'max-age=3600'
+				'Cache-Control': 'max-age=3600'
 			}
 		});
 	}

@@ -56,23 +56,23 @@ export const actions: Actions = {
 			// Add the app to the user's loved apps
 			user.loved_apps.push(app_id);
 
-            if (app) {
-                await prisma.app.update({
-                    where: {
-                        id: app_id
-                    },
-                    data: {
-                        loves: app.loves + 1
-                    }
-                });
-            }
+			if (app) {
+				await prisma.app.update({
+					where: {
+						id: app_id
+					},
+					data: {
+						loves: app.loves + 1
+					}
+				});
+			}
 		}
 
 		// Update the user
 		// remove the userId from the user object
 		await auth.updateUserAttributes(session.user.userId, {
-            loved_apps: user.loved_apps
-        });
+			loved_apps: user.loved_apps
+		});
 
 		return {
 			loved_apps: user.loved_apps,

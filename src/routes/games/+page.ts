@@ -16,8 +16,7 @@ export const load = (async ({ fetch, url }) => {
 			(tagParam ? '?tag=' + tagParam : '')
 	);
 	const games: Game[] = await response.json();
-	
-	
+
 	// go through every game to find all tags
 	const allGames = await fetch(PUBLIC_API_BASE_URL + '/api/games');
 	const allGamesJson: Game[] = await allGames.json();

@@ -11,7 +11,7 @@
 	let innerWidth: number = 0;
 </script>
 
-<svelte:window bind:innerWidth />
+<svelte:window bind:innerWidth={innerWidth} />
 
 <div class="justify-left mb-10 flex flex-col">
 	{#if $page.data.loved_apps !== undefined && $page.data.loved_apps.length > 0}
@@ -160,18 +160,16 @@
 
 				<div class="relative">
 					<!-- Element on top telling the user to sign up to see suggested games -->
-					<div class="absolute top-0 left-0 w-full h-full flex justify-center items-center z-[1000]">
-						<div class="bg-accent bg-opacity-50 rounded-lg p-4 max-w-md">
-							<h1 class="text-2xl font-bold mb-1">Sign up to see suggested games</h1>
-							<p class="text-sm mb-2">
-								Sign up to see games that we think you will like based on your favorite games and previously played games.
+					<div
+						class="absolute left-0 top-0 z-[1000] flex h-full w-full items-center justify-center"
+					>
+						<div class="max-w-md rounded-lg bg-accent bg-opacity-50 p-4">
+							<h1 class="mb-1 text-2xl font-bold">Sign up to see suggested games</h1>
+							<p class="mb-2 text-sm">
+								Sign up to see games that we think you will like based on your favorite games and
+								previously played games.
 							</p>
-							<a
-								href="/signup"
-								class="btn btn-primary btn-sm"
-							>
-								Sign up
-							</a>
+							<a href="/signup" class="btn btn-primary btn-sm"> Sign up </a>
 						</div>
 					</div>
 					<div class="pointer-events-none overflow-hidden blur-lg">

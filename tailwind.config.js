@@ -27,8 +27,8 @@ export default {
 		themes: [
 			{
 				light: customLight,
-				dark: customDark,
-			},
-		],
-	},
+				dark: customDark
+			}
+		]
+	}
 };

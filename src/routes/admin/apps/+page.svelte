@@ -38,7 +38,6 @@
 		return true;
 	}
 
-
 	function createApp(app: App) {
 		if (!checkApp(app)) return;
 
@@ -54,7 +53,6 @@
 	let userSelectedApp: string;
 	let selectedApp: App;
 	$: selectedApp = data.apps.find((app: App) => app.id === userSelectedApp);
-
 
 	function updateApp(app: App) {
 		if (!checkApp(app)) return;

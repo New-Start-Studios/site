@@ -1,6 +1,6 @@
 // DELETE request to create a delete app
 import prisma from '$lib/prisma';
-import type { App, User} from '@prisma/client';
+import type { App, User } from '@prisma/client';
 
 interface Opts {
 	url: URL;

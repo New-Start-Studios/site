@@ -9,7 +9,7 @@ export const load = (async ({ fetch }) => {
 	if (res.ok) {
 		return {
 			users: await res.json(),
-            config: config
+			config: config
 		};
 	}
 

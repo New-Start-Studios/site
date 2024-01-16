@@ -1,17 +1,17 @@
-import prisma from "$lib/prisma";
-import type { Game } from "@prisma/client";
+import prisma from '$lib/prisma';
+import type { Game } from '@prisma/client';
 
 export const prerender = false;
 
 export async function GET(): Promise<Response> {
 	const games = await prisma.game.findMany({
 		orderBy: {
-			views: "desc"
+			views: 'desc'
 		}
 	});
 
 	if (games === null) {
-		return new Response("Error getting games");
+		return new Response('Error getting games');
 	}
 
 	// Count the number of views for each game
@@ -21,5 +21,5 @@ export async function GET(): Promise<Response> {
 		totalViews += game.views;
 	}
 
-	return new Response(JSON.stringify(totalViews))
-};
+	return new Response(JSON.stringify(totalViews));
+}

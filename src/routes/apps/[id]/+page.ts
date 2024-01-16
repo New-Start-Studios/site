@@ -13,7 +13,7 @@ export const load = (async ({ params, fetch, data }) => {
 	const response: Response = await fetch(PUBLIC_API_BASE_URL + '/api/apps/' + slug);
 	if (response.status === 404) {
 		// Redirect to app page
-		throw redirect(307, '/apps/')
+		throw redirect(307, '/apps/');
 	}
 
 	const app: App = await response.json();
@@ -21,6 +21,6 @@ export const load = (async ({ params, fetch, data }) => {
 	return {
 		...data,
 		// Return the app
-        app: app,
-    };
+		app: app
+	};
 }) satisfies PageLoad;

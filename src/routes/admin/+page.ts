@@ -4,7 +4,6 @@ import { config } from '$lib/config';
 // Disable prerendering
 export const prerender = false;
 
-
 export const load = (async ({ fetch }) => {
 	const resUser = await fetch('/api/admin/user');
 	const resUserCount = await fetch('/api/admin/user/count');
@@ -17,7 +16,7 @@ export const load = (async ({ fetch }) => {
 			userCount: await resUserCount.json(),
 			gameViewCount: await resGameViewCount.json(),
 			appViewCount: await resAppViewCount.json(),
-            config: config
+			config: config
 		};
 	}
 

@@ -12,7 +12,7 @@
 		<div>
 			<h1 class="text-5xl font-bold">{config.branding.name}</h1>
 			<p class="py-6">{config.branding.description}</p>
-			<div class="flex md:flex-row flex-col gap-2">
+			<div class="flex flex-col gap-2 md:flex-row">
 				<a href="/games">
 					<button class="btn btn-primary w-full">Play Now!</button>
 				</a>

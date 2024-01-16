@@ -27,8 +27,9 @@
 				</Canvas>
 
 				<!-- Credit -->
-				<p class="bg-transparent text-center text-xs text-gray-300 pointer-events-auto">
-					Credit to <a href={config.threeDemModel.credit[1]}>{config.threeDemModel.credit[0]}</a> for the {config.threeDemModel.credit[2]}.
+				<p class="pointer-events-auto bg-transparent text-center text-xs text-gray-300">
+					Credit to <a href={config.threeDemModel.credit[1]}>{config.threeDemModel.credit[0]}</a>
+					for the {config.threeDemModel.credit[2]}.
 				</p>
 			</div>
 		{/if}

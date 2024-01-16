@@ -27,11 +27,11 @@
 </svelte:head>
 
 <div class="mb-6 flex justify-center">
-	<form class="flex gap-2 flex-col sm:flex-row" on:submit={() => search()}>
+	<form class="flex flex-col gap-2 sm:flex-row" on:submit={() => search()}>
 		<input
 			type="text"
 			placeholder="Type here"
-			class="input input-bordered max-w-md w-full"
+			class="input input-bordered w-full max-w-md"
 			bind:value={searchQuery}
 		/>
 		<select

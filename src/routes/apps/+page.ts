@@ -9,9 +9,7 @@ export const load = (async ({ fetch, url }) => {
 	const searchParam = url.searchParams.get('search') || '';
 
 	const response = await fetch(
-		PUBLIC_API_BASE_URL +
-			'/api/apps' +
-			(searchParam ? '?search=' + searchParam : '')
+		PUBLIC_API_BASE_URL + '/api/apps' + (searchParam ? '?search=' + searchParam : '')
 	);
 	const apps: App[] = await response.json();
 

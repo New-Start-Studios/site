@@ -11,10 +11,9 @@ export const load = (async ({ fetch, url }) => {
 		return {
 			users: await res.json(),
 			pageNumber,
-            config: config
+			config: config
 		};
 	}
 
 	return {};
 }) satisfies PageLoad;
-

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { themeChange } from 'theme-change';
-	import { browser } from "$app/environment";
+	import { browser } from '$app/environment';
 
 	let searchQuery: string = '';
 	let contentTitle: string = 'Nothing yet...';
@@ -38,12 +38,14 @@
 			panicKeyEle.value = panicKey || '';
 			panicLinkEle.value = panicLink || '';
 
-			if (tabName == 'Google Classroom' ||
+			if (
+				tabName == 'Google Classroom' ||
 				tabName == 'Google Docs' ||
 				tabName == 'Google' ||
 				tabName == 'Canvas' ||
 				tabName == 'Calculator' ||
-				tabName == 'Wikipedia') {
+				tabName == 'Wikipedia'
+			) {
 				tabCloakSelectEle.value = tabName.toLowerCase().replaceAll(' ', '-');
 			} else if (!tabName && !tabIcon) {
 				tabCloakSelectEle.value = 'none';
@@ -60,9 +62,9 @@
 	function savePanicSettings(e: any) {
 		const key = e.target.parentNode.children[0].value;
 		const link = e.target.parentNode.children[1].value;
-		
-		localStorage.setItem("panicKey", key);
-		localStorage.setItem("panicLink", link);
+
+		localStorage.setItem('panicKey', key);
+		localStorage.setItem('panicLink', link);
 	}
 
 	function openAboutBlank() {
@@ -73,7 +75,7 @@
 		doc.title = '';
 
 		let embed = doc.createElement('embed');
-		
+
 		embed.src = url;
 		embed.width = '100%';
 		embed.height = '100%';
@@ -88,7 +90,7 @@
 				return "reloading the site will end the aboutblank session. Are you sure you want to continue?";
 			};
 		`;
-		
+
 		doc.body.appendChild(embed);
 		doc.body.appendChild(script);
 	}
@@ -147,11 +149,10 @@
 		const tabName = e.target.parentNode.children[1].children[0].value;
 		const tabIcon = e.target.parentNode.children[1].children[1].value;
 
-		localStorage.setItem("tabName", tabName);
-		localStorage.setItem("tabIcon", tabIcon);
+		localStorage.setItem('tabName', tabName);
+		localStorage.setItem('tabIcon', tabIcon);
 
-		if (!tabName && !tabIcon)
-		{
+		if (!tabName && !tabIcon) {
 			localStorage.removeItem('tabName');
 			localStorage.removeItem('tabIcon');
 		}
@@ -169,15 +170,15 @@
 	<meta property="og:description" content="Search freely with {config.branding.name}!" />
 </svelte:head>
 
-<div class="flex flex-row justify-center gap-8 flex-wrap">
+<div class="flex flex-row flex-wrap justify-center gap-8">
 	<div class="card w-96 bg-base-300 shadow-xl">
 		<div class="card-body">
 			<h2 class="card-title justify-center">Theme</h2>
-			
-			<div class="card-actions justify-center mt-3">
+
+			<div class="card-actions mt-3 justify-center">
 				<select class="select min-w-[6rem] max-w-xs" data-choose-theme>
-					<option value="light" class="bg-base-100" selected={(theme == 'light')}>Light</option>
-					<option value="dark" class="bg-base-100" selected={(theme == 'dark')}>Dark</option>
+					<option value="light" class="bg-base-100" selected={theme == 'light'}>Light</option>
+					<option value="dark" class="bg-base-100" selected={theme == 'dark'}>Dark</option>
 				</select>
 			</div>
 		</div>
@@ -186,8 +187,8 @@
 	<div class="card w-96 bg-base-300 shadow-xl">
 		<div class="card-body">
 			<h2 class="card-title justify-center">About Blank</h2>
-			
-			<div class="card-actions justify-center mt-3">
+
+			<div class="card-actions mt-3 justify-center">
 				<button on:click={openAboutBlank} class="btn btn-neutral">Open</button>
 			</div>
 		</div>
@@ -196,10 +197,21 @@
 	<div class="card w-96 bg-base-300 shadow-xl">
 		<div class="card-body">
 			<h2 class="card-title justify-center">Panic Key</h2>
-			
-			<div class="card-actions justify-center mt-3">
-				<input id="panicKey" maxlength="1" type="text" placeholder="Key" class="input input-bordered w-full max-w-xs" />
-				<input id="panicLink" type="text" placeholder="Link" class="input input-bordered w-full max-w-xs" />
+
+			<div class="card-actions mt-3 justify-center">
+				<input
+					id="panicKey"
+					maxlength="1"
+					type="text"
+					placeholder="Key"
+					class="input input-bordered w-full max-w-xs"
+				/>
+				<input
+					id="panicLink"
+					type="text"
+					placeholder="Link"
+					class="input input-bordered w-full max-w-xs"
+				/>
 				<button on:click={savePanicSettings} class="btn btn-neutral">Save</button>
 			</div>
 		</div>
@@ -208,9 +220,9 @@
 	<div class="card w-96 bg-base-300 shadow-xl">
 		<div class="card-body">
 			<h2 class="card-title justify-center">Tab Cloaker</h2>
-			
-			<div class="card-actions justify-center mt-3">
-				<select id="tabCloakSelect" class="select min-w-[6rem] w-full" on:change={tabCloakSelected}>
+
+			<div class="card-actions mt-3 justify-center">
+				<select id="tabCloakSelect" class="select w-full min-w-[6rem]" on:change={tabCloakSelected}>
 					<option value="none" class="bg-base-100" selected>None</option>
 					<option value="google-classroom" class="bg-base-100" selected>Google Classroom</option>
 					<option value="google-docs" class="bg-base-100" selected>Google Docs</option>
@@ -223,8 +235,18 @@
 
 				<span id="customTab" style="display: none; text-align: center;">
 					or
-					<input id="tabName" type="text" placeholder="Custom Name" class="input input-bordered w-full max-w-xs mt-1" />
-					<input id="tabIcon" type="text" placeholder="Custom Icon" class="input input-bordered w-full max-w-xs mt-1" />
+					<input
+						id="tabName"
+						type="text"
+						placeholder="Custom Name"
+						class="input input-bordered mt-1 w-full max-w-xs"
+					/>
+					<input
+						id="tabIcon"
+						type="text"
+						placeholder="Custom Icon"
+						class="input input-bordered mt-1 w-full max-w-xs"
+					/>
 				</span>
 
 				<button on:click={saveTabCloakSettings} class="btn btn-neutral">Save</button>

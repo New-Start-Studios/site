@@ -21,7 +21,7 @@ export const load = (async ({ params, fetch }) => {
 	}
 
 	return {
-        // Return the game
-        game: game,
-    };
+		// Return the game
+		game: game
+	};
 }) satisfies PageLoad;

@@ -13,7 +13,7 @@
 <!-- To ensure that it renders correctly we will include every variation inside of it and then the class at the end of it will take precedence. -->
 <!-- We only need to have this appear one time throughout the rendered page, but to ensure that it works across all pages it must be placed throughout the codebase. -->
 <a
-	class="block text-left h-40 w-[18rem] transition-all duration-150 hover:scale-95 hover:shadow-lg hover:shadow-accent hover:cursor-pointer"
+	class="block h-40 w-[18rem] text-left transition-all duration-150 hover:scale-95 hover:cursor-pointer hover:shadow-lg hover:shadow-accent"
 	class:box-rounded={config.styling.contentBoxStyleType === 'rounded'}
 	href={link}
 	id={id}

@@ -3,7 +3,7 @@
 	import Nav from '$lib/components/Nav/Nav.svelte';
 	import Gtm from '$lib/components/Collection/GTM.svelte';
 	import { afterNavigate } from '$app/navigation';
-	import { browser } from "$app/environment";
+	import { browser } from '$app/environment';
 	import { config } from '$lib/config';
 	import '../app.css';
 	import customMessage from '$lib/console';

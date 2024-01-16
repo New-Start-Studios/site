@@ -16,7 +16,13 @@
 		<label class="label">
 			<span class="label-text">Email</span>
 		</label>
-		<input name="email" id="email" type="email" autocomplete="off" class="input input-primary w-full max-w-xs" /><br />
+		<input
+			name="email"
+			id="email"
+			type="email"
+			autocomplete="off"
+			class="input input-primary w-full max-w-xs"
+		/><br />
 	</div>
 
 	<div class="form-control w-full max-w-xs">
@@ -33,7 +39,7 @@
 	</div>
 	<input type="submit" class="btn btn-primary" />
 </form>
-<div class="form-control w-full max-w-[14rem] mt-4">
+<div class="form-control mt-4 w-full max-w-[14rem]">
 	<label class="label">
 		<span class="label-text">Don't have an account?</span>
 	</label>
@@ -41,5 +47,5 @@
 </div>
 
 {#if form?.message}
-    <p style="color: red">{form?.message}</p>
+	<p style="color: red">{form?.message}</p>
 {/if}

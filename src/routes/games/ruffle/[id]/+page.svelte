@@ -6,8 +6,14 @@
 
 <svelte:head>
 	<title>{config.branding.name} - {data.game.name}</title>
-	<meta name="description" content="Play {data.game.name} for free now on {config.branding.name}!" />
-	<meta property="og:description" content="Play {data.game.name} for free now on {config.branding.name}!" />
+	<meta
+		name="description"
+		content="Play {data.game.name} for free now on {config.branding.name}!"
+	/>
+	<meta
+		property="og:description"
+		content="Play {data.game.name} for free now on {config.branding.name}!"
+	/>
 	<script src="/cdn/game/ruffle/ruffle/ruffle.js"></script>
 </svelte:head>
 

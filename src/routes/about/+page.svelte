@@ -21,7 +21,7 @@
 		story is one of passion, heart, and an unyielding desire to safeguard the very essence of the internet—the
 		boundless realm where dreams are born and ideas soar.
 	</p>
-    
+
 	<p>
 		At {config.branding.name}, we cherish the memory of the internet's inception—an era when
 		visionaries painted a canvas of limitless possibilities, where connectivity knew no bounds, and

@@ -9,7 +9,7 @@ export async function suggestionAlgorithm(loved_games: string[], played_games: s
 
 	let suggested_games: string[] = [];
 
-    let users: User[] = [];
+	let users: User[] = [];
 
 	// Ensure that the users have some games
 	try {
@@ -24,7 +24,7 @@ export async function suggestionAlgorithm(loved_games: string[], played_games: s
 			}
 		});
 	} catch (error) {
-        users = [];
+		users = [];
 		console.log(error);
 	}
 
@@ -66,21 +66,21 @@ export async function suggestionAlgorithm(loved_games: string[], played_games: s
 	similarity.sort((a, b) => b.similarity - a.similarity);
 
 	// Get the most similar users
-    try {
-        for (let i = 0; i < 5; i++) {
-            let user = await prisma.user.findUnique({
-                where: {
-                    id: similarity[i].user_id
-                }
-            });
-            if (user) {
-                most_similar_users.push(user);
-            }
-        }
-    } catch (error) {
-        most_similar_users = [];
-        console.log(error);
-    }
+	try {
+		for (let i = 0; i < 5; i++) {
+			let user = await prisma.user.findUnique({
+				where: {
+					id: similarity[i].user_id
+				}
+			});
+			if (user) {
+				most_similar_users.push(user);
+			}
+		}
+	} catch (error) {
+		most_similar_users = [];
+		console.log(error);
+	}
 
 	// Get games from the most similar users
 	for (let i = 0; i < most_similar_users.length; i++) {

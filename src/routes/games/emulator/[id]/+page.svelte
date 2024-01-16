@@ -3,7 +3,7 @@
 
 	import type { PageData } from './$types';
 	export let data: PageData;
-	
+
 	import { onMount } from 'svelte';
 	import { config } from '$lib/config';
 
@@ -37,8 +37,14 @@
 {#if data.game.emulatorType == 'emulatorjs'}
 	<head>
 		<title>{config.branding.name} - {data.game.name}</title>
-		<meta name="description" content="Play {data.game.name} for free now on {config.branding.name}!" />
-		<meta property="og:description" content="Play {data.game.name} for free now on {config.branding.name}!" />
+		<meta
+			name="description"
+			content="Play {data.game.name} for free now on {config.branding.name}!"
+		/>
+		<meta
+			property="og:description"
+			content="Play {data.game.name} for free now on {config.branding.name}!"
+		/>
 	</head>
 
 	<div class="min-w-screen flex min-h-screen items-center justify-center text-center">

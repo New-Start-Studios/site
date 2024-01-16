@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { enhance } from "$app/forms";
-	import { config } from "$lib/config";
+	import { enhance } from '$app/forms';
+	import { config } from '$lib/config';
 
-    export let form;
+	export let form;
 </script>
 
 <svelte:head>
@@ -28,7 +28,8 @@
 		<label class="label">
 			<span class="label-text">Display Name</span>
 		</label>
-		<input name="display_name" id="display_name" class="input input-primary w-full max-w-xs" /><br />
+		<input name="display_name" id="display_name" class="input input-primary w-full max-w-xs" /><br
+		/>
 	</div>
 
 	<div class="form-control w-full max-w-xs">
@@ -44,30 +45,22 @@
 	</div>
 
 	<!-- Legal -->
-	<p class="text-sm text-gray-500 mb-4 max-w-[30rem]">
-		By signing up, you agree to our{" "}
-		<a href="/legal/privacy-policy" class="text-blue-500">
-			Privacy Policy
-		</a>
+	<p class="mb-4 max-w-[30rem] text-sm text-gray-500">
+		By signing up, you agree to our{' '}
+		<a href="/legal/privacy-policy" class="text-blue-500"> Privacy Policy </a>
 		and
-		<a href="/legal/terms-of-service" class="text-blue-500">
-			Terms of Service
-		</a>
+		<a href="/legal/terms-of-service" class="text-blue-500"> Terms of Service </a>
 		and that you are at least 13 years old.
 	</p>
-	<button type="submit" class="btn btn-primary">
-		Sign up
-	</button>
-
+	<button type="submit" class="btn btn-primary"> Sign up </button>
 </form>
-<div class="form-control w-full max-w-[14rem] mt-4">
+<div class="form-control mt-4 w-full max-w-[14rem]">
 	<label class="label">
 		<span class="label-text">Have an account?</span>
 	</label>
 	<a href="/login" class="btn btn-secondary">Login</a>
 </div>
 
-
 {#if form?.message}
-    <p style="color: red">{form?.message}</p>
+	<p style="color: red">{form?.message}</p>
 {/if}
