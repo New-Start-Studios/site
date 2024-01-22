@@ -18,7 +18,7 @@
 				showAlternate = true;
 				element.remove();
 			}
-		}, 1000);
+		}, 4000);
 	});
 </script>
 
