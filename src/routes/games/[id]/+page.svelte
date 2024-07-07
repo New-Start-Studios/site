@@ -144,6 +144,8 @@
 	import { browser } from '$app/environment';
 	import { page } from '$app/stores';
 	import Vert from '$lib/components/Google/Vert.svelte';
+	import Vert2 from '$lib/components/Google/Vert2.svelte';
+	import Leaderboard from '$lib/components/Google/Leaderboard.svelte';
 
 	let innerWidth: number = 0;
 
@@ -209,6 +211,9 @@
 	<div
 		class="float-left flex h-[calc(80vh-132px)] pb-5 sm:w-full md:w-[820px] lg:w-[1000px] xl:w-full"
 	>
+		{#if innerWidth > 1424}
+			<Vert2 />
+		{/if}
 		<div class="align-center mb-14 flex-grow">
 			<div id="frame" class="h-full w-full rounded-t-lg bg-white">
 				{#if !loadedFrame}
@@ -338,6 +343,8 @@
 		{/if}
 	</div>
 </div>
+
+<Leaderboard />
 
 <!-- Bottom area for displaying more information about the game -->
 <!-- Center the div -->

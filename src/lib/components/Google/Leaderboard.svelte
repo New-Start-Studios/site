@@ -7,7 +7,7 @@
 		(window.adsbygoogle = window.adsbygoogle || []).push({});
 
 		setTimeout(() => {
-			let element: HTMLElement | null = document.getElementById('Vert');
+			let element: HTMLElement | null = document.getElementById('Vert2');
 			if (element.childElementCount == 0) {
 				showAlternate = true;
 				element.remove();
@@ -30,35 +30,21 @@
 	</h3>
 
 	{#if showAlternate && typeof config.social.discord == 'string'}
-		<div class="h-full min-h-[600px] w-[224px] bg-base-300 p-4 flex justify-center items-center flex-col">
-			<h1 class="text-center font-black text-4xl text-base-content mb-6">
-				JOIN OUR DISCORD
-			</h1>
-
-			<div class="text-center text-base-content">
-				<p class="text-lg">
-					Join our Discord server to chat with other users and get the latest news and updates.
-				</p>
-
-				<a
-					href={config.social.discord}
-					target="_blank"
-					rel="noopener noreferrer"
-					class="btn btn-accent mt-4"
-				>
-					Join Discord
-				</a>
-			</div>
-		</div>		
+		<a
+			href={config.social.discord}
+			target="_blank"
+			rel="noopener noreferrer"
+			class="mx-auto flex h-[90px] w-[728px] flex-col items-center justify-center bg-base-300 p-4"
+		>
+			<h1 class="text-center text-4xl font-black text-base-content">JOIN OUR DISCORD</h1>
+		</a>
 	{/if}
 
 	<ins
-		id="Vert"
+		id="Vert2"
 		class="adsbygoogle"
-		style="display:block"
+		style="display:inline-block;width:728px;height:90px"
 		data-ad-client="ca-pub-7648886706850999"
-		data-ad-slot="8673868840"
-		data-ad-format="auto"
-		data-full-width-responsive="true"
+		data-ad-slot="4023379916"
 	/>
 </div>

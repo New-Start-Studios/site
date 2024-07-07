@@ -7,7 +7,7 @@
 		(window.adsbygoogle = window.adsbygoogle || []).push({});
 
 		setTimeout(() => {
-			let element: HTMLElement | null = document.getElementById('Vert');
+			let element: HTMLElement | null = document.getElementById('Vert2');
 			if (element.childElementCount == 0) {
 				showAlternate = true;
 				element.remove();
@@ -53,11 +53,11 @@
 	{/if}
 
 	<ins
-		id="Vert"
+		id="Vert2"
 		class="adsbygoogle"
 		style="display:block"
 		data-ad-client="ca-pub-7648886706850999"
-		data-ad-slot="8673868840"
+		data-ad-slot="4414262154"
 		data-ad-format="auto"
 		data-full-width-responsive="true"
 	/>
