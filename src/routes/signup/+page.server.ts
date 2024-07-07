@@ -5,6 +5,7 @@ import { config } from '$lib/config';
 
 import type { Actions, PageServerLoad } from './$types';
 import { PrismaClientKnownRequestError } from '@prisma/client/runtime/library';
+import prisma from '$lib/prisma';
 
 export const actions: Actions = {
 	default: async ({ request, locals }) => {
@@ -53,17 +54,20 @@ export const actions: Actions = {
 			});
 		}
 		try {
+			// check if they are the first user to sign up
+			const userCount = await prisma.user.count();
 			const user = await auth.createUser({
 				key: {
 					providerId: 'email', // auth method
 					providerUserId: email.toLowerCase(), // unique id when using "username" auth method
-					password // hashed by Lucia
+					password // hashed by Lucia,
 				},
 				attributes: {
 					email: email.toLowerCase(),
 					// for now we will set the email as verified
 					email_verified: true,
-					display_name: display_name ?? email
+					display_name: display_name ?? email,
+					role: userCount === 0 ? 'admin' : 'user'
 				}
 			});
 			const session = await auth.createSession({

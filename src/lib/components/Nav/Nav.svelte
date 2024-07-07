@@ -10,11 +10,15 @@
 <svelte:window bind:innerWidth={width} />
 
 <div class="base-content navbar bg-base-300">
-	{#if width > 760}
+	{#if width > 860}
 		<div class="flex-1 font-heading">
-			<a class="btn btn-ghost text-2xl normal-case" href="/">{config.branding.name}</a>
+			<a class="btn btn-ghost text-2xl normal-case gap-2" href="/">
+				<img src="/logo.png" alt="{config.branding.name} Logo" class="h-full rounded-md" />
+				{config.branding.name}
+			</a>
 		</div>
 	{:else}
+	
 		<div class="flex-1">
 			<a
 				class="btn btn-ghost tooltip tooltip-right normal-case"

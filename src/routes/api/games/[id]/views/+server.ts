@@ -40,7 +40,7 @@ export async function POST({ url, locals }: Opts): Promise<Response> {
 			// Get the user
 			const user = await auth.getUser(session.user.userId);
 			// redirect to login if not logged in
-			if (!user) return;
+			if (!user) return new Response(JSON.stringify({ error: 'User not found' }), { status: 404 });
 
 			// Add the game to the user's played games
 			user.played_games = [...user.played_games, id];

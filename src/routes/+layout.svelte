@@ -12,6 +12,7 @@
 
 	import SearchBar from '$lib/components/SearchBar.svelte';
 	import { fade } from 'svelte/transition';
+	import { themeChange } from 'theme-change';
 
 	afterNavigate(() => {
 		if (browser) {
@@ -22,6 +23,8 @@
 			if (tabIcon) (document.getElementById('favicon') as HTMLLinkElement).href = tabIcon;
 		}
 	});
+
+	let theme = '';
 
 	// if control  + k is pressed, focus the search bar and ensure the browser doesn't do anything
 	onMount(() => {
@@ -48,6 +51,8 @@
 				}
 			}
 		});
+
+		themeChange(false);
 	});
 
 	// Reset the layout for certain pages containing the url path
