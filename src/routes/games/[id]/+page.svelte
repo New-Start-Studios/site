@@ -344,7 +344,9 @@
 	</div>
 </div>
 
-<Leaderboard />
+{#if innerWidth >= 728}
+	<Leaderboard />
+{/if}
 
 <!-- Bottom area for displaying more information about the game -->
 <!-- Center the div -->
