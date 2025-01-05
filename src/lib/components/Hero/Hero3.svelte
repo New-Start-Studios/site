@@ -44,6 +44,9 @@
 				<a href="/apps">
 					<button class="btn btn-primary w-full">Browse Now!</button>
 				</a>
+				<a href="/joinkaz">
+					<button class="btn btn-primary w-full">Get More Links!</button>
+				</a>
 			</div>
 		</div>
 	</div>
